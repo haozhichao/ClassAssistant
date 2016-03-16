@@ -5,23 +5,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/login")
 	@ResponseBody
+	@RequestMapping("/login")
 	public String getUser(){
-		System.out.println("niahao aaa");
-		return userService.selectByKey(1).getEmail();
+		return userService.selectByKey(Integer.parseInt("3")).getName();
+	}
 
-
+	// ≤‚ ‘git
+	private void test() {
 
 	}
 
