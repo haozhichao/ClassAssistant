@@ -1,0 +1,11 @@
+.jquery-multiselect{
+    position: relative;
+}
+.jquery-multiselect .options-not-selected{
+    width: 48%;
+}
+.jquery-multiselect .options-selected{
+    position: absolute;
+    width: 48%;
+    right: 0px;
+}

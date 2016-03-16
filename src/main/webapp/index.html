@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>课堂辅助平台</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="./static/js/jquery.min.js"></script>
+    <script data-main="./static/main" src="./static/js/require.js" defer async="true"></script>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+    <link href="./static/theme/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/global/plugins/morris/morris.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/global/css/components-rounded.css" id="style_components" rel="stylesheet" type="text/css">
+    <link href="./static/theme/global/css/plugins.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/layout/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/layout/css/themes/default.css" rel="stylesheet" type="text/css">
+    <link href="./static/theme/layout/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<!-- BEGIN HEADER -->
+<div class="page-header">
+    <!-- BEGIN HEADER TOP -->
+    <div class="page-header-top">
+        <div class="container">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="index.html"><img src="./static/theme/layout/img/logo-default2.png" alt="logo" class="logo-default"></a>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler"></a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <li class="dropdown dropdown-user dropdown-dark">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <img alt="" class="img-circle" src="./static/theme/layout/img/avatar9.jpg">
+                            <span class="username username-hide-mobile">Nick</span>
+                        </a>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <li class="dropdown dropdown-extended quick-sidebar-toggler">
+                        <span class="sr-only">Toggle Quick Sidebar</span>
+                        <i class="icon-logout"></i>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END HEADER TOP -->
+
+    <!-- BEGIN HEADER MENU -->
+    <div class="page-header-menu">
+        <div class="container">
+            <!-- BEGIN MEGA MENU -->
+            <div class="hor-menu">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="javascript:;" url="./overview/overview.html" id="overview">课堂1</a>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            课堂2<i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <li>
+                                <a href="javascript:;" url="./product/product_maintenance.html">课堂2-1</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" url="./product/product_release.html">课堂2-2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-dropdown classic-menu-dropdown">
+                        <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                            课堂3<i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-left">
+                            <!--<li>
+                                <a href="javascript:;" url="./plugin/plugin_list.html">插件维护</a>
+                            </li>-->
+                            <li>
+                                <a href="javascript:;" url="./plugin/plugin_list.html">课堂3-1</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- END MEGA MENU -->
+        </div>
+    </div>
+    <!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <div class="container">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>课堂 <small>课堂</small></h1>
+            </div>
+            <!-- END PAGE TITLE -->
+
+            <!-- BEGIN PAGE TOOLBAR -->
+            <div class="page-toolbar">
+            </div>
+            <!-- END PAGE TOOLBAR -->
+        </div>
+    </div>
+    <!-- END PAGE HEAD -->
+
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="margin-top-10" id="mainContent"></div>
+            <div class="row"></div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="container">
+        2015 &copy; ClassAssistant by Mr.X And Mr.H.
+    </div>
+</div>
+<div class="scroll-to-top">
+    <i class="icon-arrow-up"></i>
+</div>
+<!-- END FOOTER -->
+
+<!-- BEGIN JAVASCRIPTS -->
+<script type="text/javascript">
+    require(['js/plugin/domReady'],function(domReady){
+        domReady(function(){
+            require(['../index'],function(index){
+                domReady(function(){
+                    index.init();
+                });
+            });
+        });
+    });
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+</html>
