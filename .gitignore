@@ -48,7 +48,8 @@ Temporary Items
 
 #.idea ÎÄ¼ş¼ĞºöÂÔ
 .idea/
-.logs/
+logs/
+target/
 
 *.iml
 
