@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.its.db.mapper.StudyResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.its.db.pojo.StudyResource" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="c_id" property="id" jdbcType="INTEGER" />
+    <result column="c_fileName" property="filename" jdbcType="VARCHAR" />
+    <result column="c_description" property="description" jdbcType="VARCHAR" />
+    <result column="c_path" property="path" jdbcType="VARCHAR" />
+    <result column="c_uploaderName" property="uploadername" jdbcType="VARCHAR" />
+    <result column="c_uploaderId" property="uploaderid" jdbcType="INTEGER" />
+    <result column="c_uploaderType" property="uploadertype" jdbcType="INTEGER" />
+    <result column="c_downloadNum" property="downloadnum" jdbcType="INTEGER" />
+    <result column="c_zan" property="zan" jdbcType="INTEGER" />
+    <result column="c_classroomId" property="classroomid" jdbcType="INTEGER" />
+    <result column="c_del" property="del" jdbcType="BIT" />
+  </resultMap>
+</mapper>

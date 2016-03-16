@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.its.db.mapper.ClassRelationStudentMapper" >
+  <resultMap id="BaseResultMap" type="com.its.db.pojo.ClassRelationStudent" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="c_id" property="id" jdbcType="INTEGER" />
+    <result column="c_classroomId" property="classroomid" jdbcType="INTEGER" />
+    <result column="c_studentId" property="studentid" jdbcType="INTEGER" />
+    <result column="c_stuCard" property="stucard" jdbcType="VARCHAR" />
+    <result column="c_del" property="del" jdbcType="BIT" />
+  </resultMap>
+</mapper>
