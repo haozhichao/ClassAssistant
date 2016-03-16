@@ -4,6 +4,7 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
@@ -11,9 +12,13 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.its.service,java,com.its.db.mapper"/>
+
+    <context:component-scan base-package="com.its.service,com.its.controller,com.its.db.*"/>
+    <mvc:annotation-driven />
+    <!--开启注解-->
+    <context:annotation-config/>
 
     <context:property-placeholder location="classpath:config.properties"/>
 
@@ -81,6 +86,23 @@
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
+    <!--拦截器的配置-->
+    <mvc:interceptors>
+        <bean class="com.its.interceptors.MyInterceptors"/>
+        <!--可以设置多个拦截器-->
+        <!--<mvc:interceptor>
+            <mvc:mapping path="/*/*"/>
+            <bean class="com.its.interceptors.MyInterceptors"></bean>
+        </mvc:interceptor>-->
+
+    </mvc:interceptors>
+    <!--不拦截静态文件-->
+    <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" />
+    <mvc:resources mapping="/classroomList/**" location="/classroomList/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/js/**" location="/js/" />
+
+    <!--aop的配置-->
     <aop:aspectj-autoproxy/>
 
     <aop:config proxy-target-class="true">
@@ -88,6 +110,7 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="appService"/>
     </aop:config>
 
+    <!--事务管理-->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="select*" read-only="true"/>

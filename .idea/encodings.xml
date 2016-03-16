@@ -22,8 +22,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/its/util/MyMapper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/config.properties" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/dispatcher-servlet.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/messages" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mybatis-servlet.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/its/db/test/BasicTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/its/db/test/PageMapperTest.java" charset="UTF-8" />

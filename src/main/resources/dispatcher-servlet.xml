@@ -9,9 +9,8 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
-  <mvc:default-servlet-handler/>
 
-  <!--RequestMappingHandlerAdapter-->
+  <!--&lt;!&ndash;RequestMappingHandlerAdapter&ndash;&gt;
   <mvc:annotation-driven>
     <mvc:message-converters>
       <ref bean="stringHttpMessageConverter"/>
@@ -42,10 +41,10 @@
         <value>text/xml</value>
       </list>
     </property>
-  </bean>
+  </bean>-->
 
-  <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>
-  <!--信息转换 - 结束-->
+  <!--<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>
+  &lt;!&ndash;信息转换 - 结束&ndash;&gt;
 
   <bean id="contentNegotiationManagerFactoryBean"
         class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -60,11 +59,11 @@
         <entry key="json" value="application/json"/>
       </map>
     </property>
-  </bean>
+  </bean>-->
 
 
 
-  <!--内容协商-->
+  <!--内容协商
   <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
     <property name="contentNegotiationManager">
       <bean class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -94,7 +93,7 @@
         </bean>
       </list>
     </property>
-  </bean>
+  </bean>-->
 
   <!--国际化-->
   <bean id="messageSource"
