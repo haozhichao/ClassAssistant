@@ -18,7 +18,10 @@ public class UserController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public String getUser(){
+		System.out.println("niahao aaa");
 		return userService.selectByKey(1).getEmail();
+
+
 
 	}
 
