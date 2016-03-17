@@ -12,17 +12,11 @@
     <title>课堂辅助平台</title>
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="offcanvas.css" rel="stylesheet">
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script>
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
+    <script src="../jquery/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -51,10 +45,30 @@
       </div>
     </nav>
     <div class="container">
-      <!--创建一个课堂-->
-      <div id="create" style="width: 100px;height: 100px;;">
-        <img id="add" onclick="add();" src="../img/add.png" width="100px" height="100px"/>
+    <!--创建一个课堂-->
+    <div id="create" style="width: 100px;height: 100px;;">
+      <img id="add" src="../img/add.png" style = "width: 100px; height: 100px; cursor: pointer;"  data-toggle="modal" data-target="#myModal"/>
+    </div>
+    </div>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">创建课堂</h4>
+            </div>
+            <div class="modal-body">
+              名称:&nbsp; <input type="text" class="form-control" id="name" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary">创建</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+
 
     </div>
   <script type="application/javascript">
