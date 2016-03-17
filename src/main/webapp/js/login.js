@@ -73,7 +73,7 @@ $(document).ready(function() {
 
 
 
-		if ($('#user').val().length < 4 || $('#user').val().length > 16) {
+		if ($('#user').val().length < 2 || $('#user').val().length > 16) {
 
 			$('#user').focus().css({
 				border: "1px solid red",
@@ -83,30 +83,6 @@ $(document).ready(function() {
 			return false;
 
 		}
-		$.ajax({
-			type: reMethod,
-			url: "/member/ajaxyz.php",
-			data: "uid=" + $("#user").val() + '&temp=' + new Date(),
-			dataType: 'html',
-			success: function(result) {
-
-				if (result.length > 2) {
-					$('#user').focus().css({
-						border: "1px solid red",
-						boxShadow: "0 0 2px red"
-					});$("#userCue").html(result);
-					return false;
-				} else {
-					$('#user').css({
-						border: "1px solid #D7D7D7",
-						boxShadow: "none"
-					});
-				}
-
-			}
-		});
-
-
 		if ($('#passwd').val().length < pwdmin) {
 			$('#passwd').focus();
 			$('#userCue').html("<font color='red'><b>×密码不能小于" + pwdmin + "位</b></font>");
@@ -117,23 +93,32 @@ $(document).ready(function() {
 			$('#userCue').html("<font color='red'><b>×两次密码不一致！</b></font>");
 			return false;
 		}
+		$.ajax({
+			type: "POST",
+			url: "http://127.0.0.1:8080/teacher/add",
+			data: {username:$("#user").val(),password:$('#passwd').val()},
+			dataType: 'JSON',
+			success: function(result) {
 
-		var sqq = /^[1-9]{1}[0-9]{4,9}$/;
-		if (!sqq.test($('#qq').val()) || $('#qq').val().length < 5 || $('#qq').val().length > 12) {
-			$('#qq').focus().css({
-				border: "1px solid red",
-				boxShadow: "0 0 2px red"
-			});
-			$('#userCue').html("<font color='red'><b>×QQ号码格式不正确</b></font>");return false;
-		} else {
-			$('#qq').css({
-				border: "1px solid #D7D7D7",
-				boxShadow: "none"
-			});
-			
-		}
+				/*if (result.length > 2) {
+					$('#user').focus().css({
+						border: "1px solid red",
+						boxShadow: "0 0 2px red"
+					});$("#userCue").html(result);
+					return false;
+				} else {
+					$('#user').css({
+						border: "1px solid #D7D7D7",
+						boxShadow: "none"
+					});
+				}*/
+				alert("添加成功");
 
-		$('#regUser').submit();
+			}
+		});
+
+
+		//$('#regUser').submit();
 	});
 	
 
