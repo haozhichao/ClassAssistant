@@ -1,6 +1,3 @@
-/**
- * Created by Jinlei on 10/23/2015.
- */
 define(['layout'], function () {
     /**
      * 初始化菜单导航
