@@ -102,6 +102,7 @@
     <mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/static/**" location="/static/" />
+    <mvc:resources mapping="/images/**" location="/images/" />
 
 
     <!--aop的配置-->
