@@ -112,7 +112,7 @@ $(document).ready(function() {
 					$('#user').focus().css({
 						border: "1px solid red",
 						boxShadow: "0 0 2px red"
-					});$("#userCue").html("<span style='color: red'>用户名存在</span>");
+					});$("#userCue").html("<span style='color: #ff3a41'>用户名存在</span>");
 					return false;
 				} else {
 					$('#user').css({

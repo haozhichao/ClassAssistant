@@ -2,7 +2,9 @@ package com.its.controller;
 
 import com.its.db.pojo.ClassRoom;
 
+import com.its.db.pojo.Teacher;
 import com.its.service.IClassRoomService;
+import com.its.service.impl.ClassRoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -25,31 +28,35 @@ public class ClassRoomController {
 
 	@RequestMapping("/add")
 	@ResponseBody
-	public int add(ClassRoom classRoom ){
-
+	public int add(ClassRoom classRoom ,HttpServletRequest request){
 
 		//生成邀请码
 		String uuid = UUID.randomUUID().toString();
 		classRoom.setUuid(uuid);
 		classRoom.setCreaterdate(new Date());
 		classRoom.setStunum(0);
-		int i = classRoomService.save(classRoom);
-		return i;
+		//从session中获取老师信息
+		Teacher teacher = (Teacher)request.getAttribute("user");
+		classRoom.setTeacherid(teacher.getId());
+		classRoom.setCreatername(teacher.getName());
+
+		return classRoomService.save(classRoom);
 	}
 
 
 	/**
 	 * 展示列表
-	 * @param teacherid 老师的id
+	 * @param
 	 * @return
 	 */
 	@RequestMapping("/getAll")
 	@ResponseBody
-	public List<ClassRoom> getAll(Integer teacherid){
+	public List<ClassRoom> getAll(HttpServletRequest request){
 
-		Example example = new Example(ClassRoom.class) ;
-		example.createCriteria().andGreaterThan("id",0);
-		List<ClassRoom> list = classRoomService.selectByExample(example);
+		Teacher teacher = (Teacher)request.getAttribute("user");
+		ClassRoom classRoom = new ClassRoom();
+		classRoom.setTeacherid(teacher.getId());
+		List<ClassRoom> list = classRoomService.select(classRoom);
 		return list;
 
 	}

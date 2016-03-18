@@ -47,6 +47,6 @@ public interface IService<T> {
     List<T> select(T entity);
 
     List<T> selectByExample(Object example);
-
-    //TODO 其他...
+    List<T> getAll();
+     //TODO 其他...
 }
