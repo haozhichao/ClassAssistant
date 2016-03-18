@@ -30,6 +30,10 @@ public class TeacherController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public int add(Teacher teacher){
+
+		if (this.teacherIsExist(teacher)){
+			return -1;
+		}
 		//设置默认的用户名相同
 		teacher.setName(teacher.getUsername());
 		return teacherService.save(teacher);
@@ -66,4 +70,19 @@ public class TeacherController {
 		return new ModelAndView("redirect:/login.html");
 	}
 
+	/**
+	 * 老师用户是否存在
+	 * @param teacher
+	 * @return
+	 */
+	private boolean teacherIsExist(Teacher teacher){
+
+		Teacher teacherTest = new Teacher();
+		teacherTest.setUsername(teacher.getUsername());
+		if (teacherService.select(teacherTest).size()>0){
+			return true;
+		}
+		return false;
+
+	}
 }

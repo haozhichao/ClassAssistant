@@ -93,32 +93,64 @@ $(document).ready(function() {
 			$('#userCue').html("<font color='red'><b>×两次密码不一致！</b></font>");
 			return false;
 		}
+		var url;
+		var tpye1 = $('input:radio[name="type1"]:checked').val();
+		if(tpye1 == 0){
+			url = "/student/add";
+		}else{
+			url = "/teacher/add";
+		}
+
 		$.ajax({
 			type: "POST",
-			url: "http://127.0.0.1:8080/teacher/add",
+			url: url,
 			data: {username:$("#user").val(),password:$('#passwd').val()},
 			dataType: 'JSON',
 			success: function(result) {
 
-				/*if (result.length > 2) {
+				if (result == -1) {
 					$('#user').focus().css({
 						border: "1px solid red",
 						boxShadow: "0 0 2px red"
-					});$("#userCue").html(result);
+					});$("#userCue").html("<span style='color: red'>用户名存在</span>");
 					return false;
 				} else {
 					$('#user').css({
 						border: "1px solid #D7D7D7",
 						boxShadow: "none"
 					});
-				}*/
-				alert("添加成功");
 
+					window.location.reload();//刷新当前页面.
+				}
 			}
 		});
 
 
 		//$('#regUser').submit();
+	});
+	$('#login').click(function (){
+		var url;
+		var tpye1 = $('input:radio[name="type"]:checked').val();
+		if(tpye1 == 0){
+			url = "/student/login";
+		}else{
+			url = "/teacher/login";
+		}
+		var username = $('#u').val();
+		var password = $('#p').val();
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: {username:username,password:password},
+			dataType: 'JSON',
+			success:function(data){
+				if(data){
+					window.location.href = "/classroomList/index.html";
+				}else{
+					toastr.error("登录失败");
+				}
+			}
+		});
 	});
 	
 

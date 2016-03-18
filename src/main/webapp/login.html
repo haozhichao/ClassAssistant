@@ -3,7 +3,9 @@
 <title>课堂辅助平台</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
+<link href="static/js/toastr/toastr.css"/>
+<script type="application/javascript" src="static/js/toastr/toastr.js"></script>
+<script type="text/javascript" src="login.js"></script>
 <link href="css/login2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,7 +30,7 @@
     
             
 			<div class="login_form">
-				<form action="#" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post"><input type="hidden" name="did" value="0"/>
+				<form  name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post"><input type="hidden" name="did" value="0"/>
                <input type="hidden" name="to" value="log"/>
                 <div class="uinArea" id="uinArea">
                 <label class="input-tips" for="u">帐号：</label>
@@ -44,8 +46,11 @@
                     <input type="password" id="p" name="p" class="inputstyle"/>
                 </div>
                 </div>
-               
-                <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="登 录" style="width:150px;" class="button_blue"/></div>
+               <div align="center">
+                   <label style="font-size: 15px;"><input  id="student" name="type" type="radio" value="0" checked="true"/>学生</label>
+                   <span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label style="font-size: 15px;"><input id="teacher" name="type" type="radio" value="1"/>老师</label>
+               </div>
+                <div style="padding-left:50px;margin-top:20px;"><input type="button"  id="login" value="登 录" style="width:150px;" class="button_blue"/></div>
               </form>
            </div>
            
@@ -86,7 +91,10 @@
                     </div>
                     
                 </li>
-                
+            <div align="center">
+                <label style="font-size: 15px;"><input  id="stuRes" name="type1" type="radio" value="0" checked="true"/>学生</label>
+                <span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label style="font-size: 15px;"><input id="teacherRes" name="type1" type="radio" value="1"/>老师</label>
+            </div>
                 
                 <li>
                     <div class="inputArea">
