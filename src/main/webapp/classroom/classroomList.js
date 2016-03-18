@@ -1,4 +1,4 @@
-define([ 'toastr'], function (toastr) {
+define([], function () {
   function init() {
     initClick();
   }
