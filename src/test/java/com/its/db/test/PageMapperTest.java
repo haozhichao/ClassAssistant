@@ -26,7 +26,9 @@ package com.its.db.test;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.its.db.mapper.ClassRoomMapper;
 import com.its.db.mapper.UserMapper;
+import com.its.db.pojo.ClassRoom;
 import com.its.db.pojo.User;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -70,5 +72,15 @@ public class PageMapperTest extends BasicTest {
         }
         PageInfo<User> userPageInfo = new PageInfo<User>(users);
         System.out.println(userPageInfo.getTotal());
+    }
+
+    @Test
+    public void test1(){
+
+        ClassRoomMapper classRoomMapper  = sqlSession.getMapper(ClassRoomMapper.class);
+        List<ClassRoom> list = classRoomMapper.selectAll();
+        for (ClassRoom c:list){
+            System.out.println(c.getName()+"*******************");
+        }
     }
 }
