@@ -1,8 +1,8 @@
 package com.its.controller;
 
 import com.its.db.pojo.ClassRoom;
-import com.its.service.impl.ClassRoomService;
 
+import com.its.service.IClassRoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ClassRoomController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClassRoomController.class);
 
 	@Autowired
-	private ClassRoomService classRoomService;
+	private IClassRoomService classRoomService;
 
 	@RequestMapping("/add")
 	@ResponseBody

@@ -1,6 +1,6 @@
 package com.its.controller;
 
-import com.its.service.impl.CommentsService;
+import com.its.service.ICommentsService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,6 @@ public class CommentsController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommentsController.class);
 
 	@Autowired
-	private CommentsService commentsService;
+	private ICommentsService commentsService;
 
 }

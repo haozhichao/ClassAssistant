@@ -1,6 +1,6 @@
 package com.its.controller;
 
-import com.its.service.impl.ClassRelationStudentService;
+import com.its.service.IClassRelationStudentService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,6 @@ public class ClassRelationStudentController {
 
 
 	@Autowired
-	private ClassRelationStudentService classRelationStudentService;
+	private IClassRelationStudentService classRelationStudentService;
 
 }

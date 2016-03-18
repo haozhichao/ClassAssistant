@@ -20,7 +20,6 @@ public class UserController {
 		return userService.selectByKey(Integer.parseInt("3")).getName();
 	}
 
-	// ≤‚ ‘git
 	private void test() {
 
 	}

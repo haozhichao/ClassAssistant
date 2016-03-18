@@ -1,6 +1,6 @@
 package com.its.controller;
 
-import com.its.service.impl.StudyResourceService;
+import com.its.service.IStudyResourceService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,6 @@ public class StudyResourceController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StudyResourceController.class);
 
 	@Autowired
-	private StudyResourceService studyResourceService;
+	private IStudyResourceService studyResourceService;
 
 }

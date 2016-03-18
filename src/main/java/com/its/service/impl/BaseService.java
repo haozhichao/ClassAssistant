@@ -68,5 +68,8 @@ public abstract class BaseService<T> implements IService<T> {
         return myMapper.selectByExample(example);
     }
 
+    @Override public List<T> select(T entity) {
+        return myMapper.select(entity);
+    }
     //TODO 其他...
 }

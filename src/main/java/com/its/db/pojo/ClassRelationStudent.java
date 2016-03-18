@@ -9,7 +9,7 @@ public class ClassRelationStudent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /**
+     /**
      * 课堂id
      */
     @Column(name = "c_classroomId")

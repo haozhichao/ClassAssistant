@@ -1,6 +1,6 @@
 package com.its.controller;
 
-import com.its.service.impl.NoticeService;
+import com.its.service.INoticeService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,6 @@ public class NoticeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NoticeController.class);
 
 	@Autowired
-	private NoticeService noticeService;
+	private INoticeService noticeService;
 
 }

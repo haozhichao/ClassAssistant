@@ -44,6 +44,8 @@ public interface IService<T> {
 
     int updateNotNull(T entity);
 
+    List<T> select(T entity);
+
     List<T> selectByExample(Object example);
 
     //TODO 其他...

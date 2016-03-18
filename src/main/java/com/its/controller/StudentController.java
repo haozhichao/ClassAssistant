@@ -1,6 +1,6 @@
 package com.its.controller;
 
-import com.its.service.impl.StudentService;
+import com.its.service.IStudentService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,6 @@ public class StudentController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
 	@Autowired
-	private StudentService studentService;
+	private IStudentService studentService;
 
 }
