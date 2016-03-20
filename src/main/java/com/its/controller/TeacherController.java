@@ -50,7 +50,7 @@ public class TeacherController {
 
 		List<Teacher> list = teacherService.select(teacher);
 		if (list.size() > 0){
-			request.setAttribute("user",list.get(0));
+			request.getSession().setAttribute("user",list.get(0));
 			return true;
 		}
 		return false;

@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
+    <!--<nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,12 +33,14 @@
           </ul>
         </div>
       </div>
-    </nav>
-    <div class="container">
+    </nav>-->
+    <div class="container" id="classroomList" style="float:left">
     <!--创建一个课堂-->
-    <div id="create" style="width: 100px;height: 100px;;">
-      <img id="add" src="images/add.png" style = "margin-top: 20px; width: 100px; height: 100px; cursor: pointer;"  data-toggle="modal" data-target="#myModal"/>
-    </div>
+        <!--<div id="classRoom1" style="width: 100px;height: 100px;background-color: #e4b9c0">
+          <div style="height: 30px"><lable>课堂1</lable></div>
+          <div style="height: 30px"><lable>人数</lable></div>
+          <div style="height: 30px"><lable>创建时间</lable></div>
+        </div>-->
     </div>
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -52,7 +54,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-primary">创建</button>
+              <button type="button" class="btn btn-primary" id="addClassroom">创建</button>
             </div>
           </div>
         </div>

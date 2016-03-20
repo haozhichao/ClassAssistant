@@ -4,15 +4,12 @@ import com.its.db.pojo.ClassRoom;
 
 import com.its.db.pojo.Teacher;
 import com.its.service.IClassRoomService;
-import com.its.service.impl.ClassRoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import tk.mybatis.mapper.entity.Example;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -36,8 +33,13 @@ public class ClassRoomController {
 		classRoom.setCreaterdate(new Date());
 		classRoom.setStunum(0);
 		//从session中获取老师信息
-		Teacher teacher = (Teacher)request.getAttribute("user");
-		classRoom.setTeacherid(teacher.getId());
+		Teacher teacher = (Teacher)request.getSession().getAttribute("user");
+		if (teacher != null){
+			classRoom.setTeacherid(teacher.getId());
+		}else{
+			//session过期了，重新登录
+		}
+
 		classRoom.setCreatername(teacher.getName());
 
 		return classRoomService.save(classRoom);
@@ -53,11 +55,14 @@ public class ClassRoomController {
 	@ResponseBody
 	public List<ClassRoom> getAll(HttpServletRequest request){
 
-		Teacher teacher = (Teacher)request.getAttribute("user");
-		ClassRoom classRoom = new ClassRoom();
-		classRoom.setTeacherid(teacher.getId());
-		List<ClassRoom> list = classRoomService.select(classRoom);
-		return list;
+		Teacher teacher = (Teacher)request.getSession().getAttribute("user");
+		if(teacher!=null){
+			ClassRoom classRoom = new ClassRoom();
+			classRoom.setTeacherid(teacher.getId());
+			List<ClassRoom> list = classRoomService.select(classRoom);
+			return list;
+		}
+		return null;
 
 	}
 
