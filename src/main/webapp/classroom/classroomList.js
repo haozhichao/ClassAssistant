@@ -15,13 +15,13 @@ define(['jquery'], function ($) {
       success:function(data){
         $.each(data,function(index,item){
             html.push('<div id="'+item.id+'" style="width: 150px;height: 150px;background-color: #e4b9c0;margin-left: 20px;margin-top: 20px;float:left">');
-            html.push('<div style="height: 30px"><lable>'+item.name+'</lable></div>');
+            html.push('<div style="height: 30px"><lable><a href="../index.html?id='+item.id+'">'+item.name+'</a></lable></div>');
             html.push('<div style="height: 30px"><lable>人数:'+item.stunum+'</lable></div>');
-            html.push('<div style="height: 30px"><lable>创建时间:'+item.createrdate+'</lable></div>');
+            html.push('<div style="height: 30px"><lable>创建时间:'+FormatDate(item.createrdate)+'</lable></div>');
             html.push('</div>');
         });
-        html.push('<div id="create" style="width: 100px;height: 100px;">');
-        html.push('<img id="add" src="images/add.png" style = "margin-top: 20px; width: 100px; height: 100px; cursor: pointer;"  data-toggle="modal" data-target="#myModal"/>');
+        html.push('<div id="create" style="width: 150px;height: 150px;margin-left: 20px;float:left">');
+        html.push('<img id="add" src="images/add.png" style = "margin-top: 20px; width: 150px; height: 150px; cursor: pointer;"  data-toggle="modal" data-target="#myModal"/>');
         html.push('</div>');
         $('#classroomList').html(html.join(''));
       }
@@ -54,7 +54,10 @@ define(['jquery'], function ($) {
       $('.row-offcanvas').toggleClass('active')
     });
   }
-
+  function FormatDate (strTime) {
+    var date = new Date(strTime);
+    return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+  }
   //=======
   var classroomList = {};
   classroomList.init = function () {

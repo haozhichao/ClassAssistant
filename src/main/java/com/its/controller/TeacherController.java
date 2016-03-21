@@ -71,6 +71,18 @@ public class TeacherController {
 	}
 
 	/**
+	 * 更新老师信息
+	 * @param teacher
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/update")
+	public Integer update(Teacher teacher){
+
+		return teacherService.updateNotNull(teacher);
+	}
+
+	/**
 	 * 老师用户是否存在
 	 * @param teacher
 	 * @return
