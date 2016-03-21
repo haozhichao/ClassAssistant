@@ -22,7 +22,7 @@ public class ClassRelationStudent {
     private Integer studentid;
 
     /**
-     * 学生名片
+     * 学生名片 备注信息
      */
     @Column(name = "c_stuCard")
     private String stucard;

@@ -36,6 +36,7 @@ public class TeacherController {
 		}
 		//设置默认的用户名相同
 		teacher.setName(teacher.getUsername());
+		teacher.setDel(false);
 		return teacherService.save(teacher);
 	}
 
@@ -50,6 +51,7 @@ public class TeacherController {
 
 		List<Teacher> list = teacherService.select(teacher);
 		if (list.size() > 0){
+			request.getSession().setAttribute("role",1);
 			request.getSession().setAttribute("user",list.get(0));
 			return true;
 		}
@@ -67,7 +69,7 @@ public class TeacherController {
 	public ModelAndView logout(HttpServletRequest request) {
 		request.setAttribute("user","");
 		LOGGER.debug("退出成功。");
-		return new ModelAndView("redirect:/login.html");
+		return new ModelAndView("redirect:/login/login.html");
 	}
 
 	/**

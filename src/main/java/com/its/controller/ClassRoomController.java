@@ -1,8 +1,11 @@
 package com.its.controller;
 
+import com.its.db.pojo.ClassRelationStudent;
 import com.its.db.pojo.ClassRoom;
 
+import com.its.db.pojo.Student;
 import com.its.db.pojo.Teacher;
+import com.its.service.IClassRelationStudentService;
 import com.its.service.IClassRoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +25,18 @@ public class ClassRoomController {
 
 	@Autowired
 	private IClassRoomService classRoomService;
+	@Autowired
+	private IClassRelationStudentService classRelationStudentService;
 
-	@RequestMapping("/add")
+	/**
+	 * 创建课堂
+	 * @param classRoom
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/createClassRoom")
 	@ResponseBody
-	public int add(ClassRoom classRoom ,HttpServletRequest request){
+	public int createClassRoom(ClassRoom classRoom ,HttpServletRequest request){
 
 		//生成邀请码
 		String uuid = UUID.randomUUID().toString();
@@ -41,19 +52,50 @@ public class ClassRoomController {
 		}
 
 		classRoom.setCreatername(teacher.getName());
+		classRoom.setDel(false);
 
 		return classRoomService.save(classRoom);
 	}
 
+	/**
+	 * 加入课堂
+	 * @param classRoom
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/addClassRoom")
+	@ResponseBody
+	public int addClassRoom(ClassRoom classRoom ,HttpServletRequest request){
+
+		List<ClassRoom> list = classRoomService.select(classRoom);
+		if(list.size()>0){		//存在邀请码的班级
+			ClassRelationStudent classRelationStudent  = new ClassRelationStudent() ;
+			classRelationStudent.setDel(false);
+			classRelationStudent.setClassroomid(list.get(0).getId());
+			Object obj = request.getSession().getAttribute("user");
+			if (obj == null){
+				//session过期了
+				return -2;
+			}else{
+				Student student = (Student)obj;
+				classRelationStudent.setStudentid(student.getId());
+				return classRelationStudentService.save(classRelationStudent);
+			}
+		}
+
+		//不存在的邀请码
+		return -1;
+
+	}
 
 	/**
-	 * 展示列表
+	 * 老师登录时，展示所有课堂
 	 * @param
 	 * @return
 	 */
-	@RequestMapping("/getAll")
+	@RequestMapping("/getAllByTeacher")
 	@ResponseBody
-	public List<ClassRoom> getAll(HttpServletRequest request){
+	public List<ClassRoom> getAllByTeacher(HttpServletRequest request){
 
 		Teacher teacher = (Teacher)request.getSession().getAttribute("user");
 		if(teacher!=null){
@@ -64,6 +106,41 @@ public class ClassRoomController {
 		}
 		return null;
 
+	}
+	/**
+	 * 学生登录时，显示所加入的所有课堂
+	 * @param
+	 * @return
+	 */
+	@RequestMapping("/getAllByStudent")
+	@ResponseBody
+	public List<ClassRoom> getAllByStudent(HttpServletRequest request){
+
+		Student student = (Student)request.getSession().getAttribute("user");
+		if(student!=null){
+			List<ClassRoom> list = classRoomService.getClassRoomByStu(student.getId());
+			return list;
+		}
+		return null;
+
+	}
+
+	/**
+	 * 返回角色权限
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getRole")
+	@ResponseBody
+	public int getRole(HttpServletRequest request){
+		//session过期了
+		int role=0;
+		Object obj = request.getSession().getAttribute("role");
+		if(obj!=null){
+			role = (Integer)obj;
+		}
+
+		return role;
 	}
 
 }

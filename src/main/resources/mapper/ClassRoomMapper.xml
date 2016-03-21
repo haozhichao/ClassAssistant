@@ -15,4 +15,24 @@
     <result column="c_createrDate" property="createrdate" jdbcType="DATE" />
     <result column="c_del" property="del" jdbcType="BIT" />
   </resultMap>
+
+  <resultMap id="ClassResultMap" type="com.its.db.pojo.ClassRoom" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id2" property="id" jdbcType="INTEGER" />
+    <result column="c_uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="name1" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="stuNum" property="stunum" jdbcType="INTEGER" />
+    <result column="teacherId" property="teacherid" jdbcType="INTEGER" />
+    <result column="createrName" property="creatername" jdbcType="VARCHAR" />
+    <result column="createrDate" property="createrdate" jdbcType="DATE" />
+    <result column="del" property="del" jdbcType="BIT" />
+  </resultMap>
+  <select id="getClassRoomByStu" resultMap="ClassResultMap" parameterType="int">
+    SELECT c.c_id AS id2,c.c_uuid,c.c_name AS name1,c.c_description AS description,c.c_stuNum AS stuNum,c.c_teacherId AS teacherId,c.c_createrName AS createrName,c.c_createrDate AS createrDate,c.c_del AS del
+    FROM t_student s,t_classroom_relation_student r,t_classroom c
+    WHERE s.c_id = r.c_studentId AND c.c_id = c_classroomId AND s.c_id = #{id}
+  </select>
 </mapper>

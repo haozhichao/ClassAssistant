@@ -35,6 +35,7 @@
     <url-pattern>*.html</url-pattern>
     <url-pattern>*.js</url-pattern>
     <url-pattern>*.png</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
   </servlet-mapping>
 
 

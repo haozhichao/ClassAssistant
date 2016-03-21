@@ -7,6 +7,7 @@ define([ 'toastr'], function (toastr) {
 
 	// 初始化页面事件
 	function initPage() {
+		$("#u").focus();
 		$('#switch_qlogin').click(function(){
 			$('#switch_login').removeClass("switch_btn_focus").addClass('switch_btn');
 			$('#switch_qlogin').removeClass("switch_btn").addClass('switch_btn_focus');

@@ -64,7 +64,8 @@ public class StudentController {
 
 		List<Student> list = studentService.select(student);
 		if (list.size() > 0){
-			request.setAttribute("user",list.get(0));
+			request.getSession().setAttribute("role",0);
+			request.getSession().setAttribute("user",list.get(0));
 			return true;
 		}
 		return false;
