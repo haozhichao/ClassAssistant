@@ -8,15 +8,17 @@ define(['jquery'], function ($) {
   //初始化，显示所有课堂
   function initClassRoomList(){
     var role = getRole();
+    var html = [];
     //类型判断，产生不同的类型
     var url;
     if(role == 0){
       url = "/classRoom/getAllByStudent";
+      html.push('<div><button id="add" type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#addMyModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;加入课堂</button></div>');
     }else{
       url = "/classRoom/getAllByTeacher";
+      html.push('<div><button id="create" type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#createMyModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;创建课堂</button></div>');
     }
 
-    var html = [];
     $.ajax({
       type:"POST",
       url:url,
@@ -29,16 +31,6 @@ define(['jquery'], function ($) {
             html.push('<div   style="height: 30px"><lable>创建时间:'+FormatDate(item.createrdate)+'</lable></div>');
             html.push('</div>');
         });
-
-        if(role == 0){
-          html.push('<div id="create" style="width: 250px;height: 200px;margin-left: 20px;float:left">');
-          html.push('<img id="add" src="images/add.png" style = "margin-top: 20px; width: 150px; height: 150px; cursor: pointer;"  data-toggle="modal" data-target="#addMyModal"/>');
-          html.push('</div>');
-        }else{
-          html.push('<div id="create" style="width: 250px;height: 200px;margin-left: 20px;float:left">');
-          html.push('<img id="add" src="images/add.png" style = "margin-top: 20px; width: 150px; height: 150px; cursor: pointer;"  data-toggle="modal" data-target="#createMyModal"/>');
-          html.push('</div>');
-        }
 
         $('#classroomList').html(html.join(''));
 
@@ -76,7 +68,9 @@ define(['jquery'], function ($) {
         dataType:"JSON",
         success:function(data){
           if(data>0){
-            alert("添加成功");
+            window.location.reload();//刷新当前页面.
+          }else if(data == -3){
+            alert("你已在班级中");
             window.location.reload();//刷新当前页面.
           }else{
             alert("添加失败");

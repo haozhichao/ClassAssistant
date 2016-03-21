@@ -78,8 +78,17 @@ public class ClassRoomController {
 				return -2;
 			}else{
 				Student student = (Student)obj;
-				classRelationStudent.setStudentid(student.getId());
-				return classRelationStudentService.save(classRelationStudent);
+				ClassRelationStudent classRelationStudent1  = new ClassRelationStudent();
+				classRelationStudent1.setStudentid(student.getId());
+				classRelationStudent1.setClassroomid(list.get(0).getId());
+				if (classRelationStudentService.select(classRelationStudent1).size()>0){
+					//加入过这个班级，不需要再次添加
+					return -3;
+				}else {
+					classRelationStudent.setStudentid(student.getId());
+					return classRelationStudentService.save(classRelationStudent);
+				}
+
 			}
 		}
 
