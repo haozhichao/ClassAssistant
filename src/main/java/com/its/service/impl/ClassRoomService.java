@@ -19,7 +19,7 @@ public class ClassRoomService extends BaseService<ClassRoom> implements IClassRo
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
-    @Override public List<ClassRoom> getClassRoomByStu(int id) {
+    public List<ClassRoom> getClassRoomByStu(int id) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
             ClassRoomMapper mapper = session.getMapper(ClassRoomMapper.class);
