@@ -1,8 +1,21 @@
 define(['jquery'], function ($) {
 
   function init() {
-    initClick();
+    initAddButtn();
     initClassRoomList();
+    initClick();
+  }
+
+  function initAddButtn(){
+    var html = [];
+    var role = getRole();
+    //类型判断，产生不同的类型
+    if(role == 0){
+      html.push('<button id="add" type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#addMyModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;加入课堂</button>');
+    }else{
+      html.push('<button id="create" type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#createMyModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;创建课堂</button> ');
+    }
+    $("#addButtn").html(html.join(''));
   }
 
   //初始化，显示所有课堂
@@ -13,12 +26,9 @@ define(['jquery'], function ($) {
     var url;
     if(role == 0){
       url = "/classRoom/getAllByStudent";
-      html.push('<div><button id="add" type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#addMyModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;加入课堂</button></div>');
     }else{
       url = "/classRoom/getAllByTeacher";
-      html.push('<div><button id="create" type="button" class="btn btn-primary" style="margin-left: 20px;" data-toggle="modal" data-target="#createMyModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;创建课堂</button></div>');
     }
-
     $.ajax({
       type:"POST",
       url:url,
@@ -41,6 +51,9 @@ define(['jquery'], function ($) {
   //按钮事件的绑定
   function initClick() {
 
+    $('[data-toggle="offcanvas"]').click(function () {
+      $('.row-offcanvas').toggleClass('active')
+    });
     //创建课堂
     $("#createClassroom").click(function(){
         var name = $("#name").val();
@@ -51,7 +64,10 @@ define(['jquery'], function ($) {
         dataType:"JSON",
         success:function(data){
           if(data>0){
-            window.location.reload();//刷新当前页面.
+            $("#addMyModal").modal('hide');
+            //局部刷新
+            initClassRoomList();
+            //window.location.reload();//刷新当前页面.
           }else{
             alert("添加失败");
           }
@@ -68,10 +84,12 @@ define(['jquery'], function ($) {
         dataType:"JSON",
         success:function(data){
           if(data>0){
-            window.location.reload();//刷新当前页面.
+            $("#createMyModal").modal('hide');
+            initClassRoomList();
           }else if(data == -3){
             alert("你已在班级中");
-            window.location.reload();//刷新当前页面.
+            $("#createMyModal").modal('hide');
+            initClassRoomList();
           }else{
             alert("添加失败");
           }
@@ -79,12 +97,43 @@ define(['jquery'], function ($) {
       });
     });
 
-    $('[data-toggle="offcanvas"]').click(function () {
-      $('.row-offcanvas').toggleClass('active')
+    //更新个人信息数据回显
+    $('#updateMessage').click(function () {
+      var role = getRole();
+      var url;
+      if(role == 0){
+          url="/student/getStudent";
+      }else{
+          url = "/teacher/getTeacher";
+      }
+      $.ajax({
+        type:"POST",
+        async: false,
+        url:url,
+        dataType:"JSON",
+        success:function(data){
+          $('#username').val(data.username) ;
+          $("#stuid").val(data.stuid);
+          if(data.stuid != null){
+            $('#stuid').attr("disabled",true);
+          }
+          $("#school").val(data.school);
+          $("#telpthone").val(data.telpthone);
+          $("#email").val(data.email);
+          $("persign").val(data.persign);
+        }
+      });
     });
+
+    //修改信息
+    $("#update").click(function () {
+
+    });
+
+
   }
 
-  //初始化日期
+  //初始化日期j
   function FormatDate (strTime) {
     var date = new Date(strTime);
     return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();

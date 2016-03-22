@@ -71,4 +71,33 @@ public class StudentController {
 		return false;
 
 	}
+
+	/**
+	 * 更新操作
+	 * @param student
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/update")
+	@ResponseBody
+	public int update(Student student , HttpServletRequest request){
+
+		Student sessionStu = (Student)request.getSession().getAttribute("user");
+		student.setId(sessionStu.getId());
+		student.setName(sessionStu.getName());
+		student.setDel(sessionStu.getDel());
+		student.setPassword(sessionStu.getPassword());
+		return studentService.updateAll(student);
+	}
+
+	/**
+	 * 取得session中的数据
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getStudent")
+	@ResponseBody
+	public Student getStudent(HttpServletRequest request){
+		return (Student)request.getSession().getAttribute("user");
+	}
 }

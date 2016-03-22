@@ -32,6 +32,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
     <url-pattern>*.html</url-pattern>
     <url-pattern>*.js</url-pattern>
     <url-pattern>*.png</url-pattern>
@@ -64,6 +65,16 @@
   <!--连接.html结尾的-->
   <filter-mapping>
     <filter-name>Myfilter</filter-name>
+    <url-pattern>*.html</url-pattern>
+  </filter-mapping>
+  <!--登录session过滤器-->
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.its.filter.AuthFilter</filter-class>
+  </filter>
+  <!--过滤.html结尾的-->
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
     <url-pattern>*.html</url-pattern>
   </filter-mapping>
 
