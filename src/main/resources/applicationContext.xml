@@ -87,21 +87,23 @@
     </bean>
 
     <!--拦截器的配置-->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <bean class="com.its.interceptors.MyInterceptors"/>
 
-    <!--可以设置多个拦截器-->
-        <!--<mvc:interceptor>
+    &lt;!&ndash;可以设置多个拦截器&ndash;&gt;
+        &lt;!&ndash;<mvc:interceptor>
             <mvc:mapping path="/"/>
             <mvc:exclude-mapping path="/login/**"/>
             <bean class="com.its.interceptors.MyInterceptors"></bean>
-        </mvc:interceptor>-->
+        </mvc:interceptor>&ndash;&gt;
 
-    </mvc:interceptors>
+    </mvc:interceptors>-->
     <!--不拦截静态文件-->
     <mvc:resources mapping="/static/**" location="/static/" />
     <mvc:resources mapping="/login/**" location="/login/" />
     <mvc:resources mapping="/notice/**" location="/notice/" />
+    <mvc:resources mapping="/learnresources/**" location="/learnresources/" />
+    <mvc:resources mapping="/classroom/**" location="/classroom/" />
 
     <!--aop的配置-->
     <aop:aspectj-autoproxy/>

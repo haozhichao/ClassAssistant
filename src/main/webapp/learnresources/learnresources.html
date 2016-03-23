@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script data-main="../static/main" src="../static/js/require.js"></script>
+    <style type="text/css">
+        .btn-info{
+            background-color: #39D5B0;
+            line-height: 12px;
+        }
+        .btn-info:focus {
+            background-color: #38B259;
+        }
+        .btn-info:active{
+            background-color: #38B259;
+        }
+        .btn-info:hover {
+            background-color: #38B259;
+        }
+        .btn-default{
+            line-height: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!--上传按钮-->
+    <div id="releaseDiv" style="height: 30px;">
+        <div class="pull-right">
+            <button class="btn btn-info" id="addNotice">上传</button>
+        </div>
+    </div>
+    <!--课堂展示列表-->
+    <div id="classroomList" style="float:left;">
+        <div style="width: 130px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
+            <img src="../learnresources/images/doc.png" style="width:125px;">
+            <div style="width: 130px;text-align: center"><lable>高数参考文献.doc</lable></div>
+            <div style="width: 130px;text-align: center"><a href="#"><span>下载</span></a><span>下载数：200</span></div>
+            <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+        </div>
+        <div style="width: 130px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
+            <img src="../learnresources/images/doc.png" style="width:125px;">
+            <div style="width: 130px;text-align: center"><lable>高数参考文献.doc</lable></div>
+            <div style="width: 130px;text-align: center"><a href="#"><span>下载</span></a><span>下载数：200</span></div>
+            <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+        </div>
+        <div style="width: 130px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
+            <img src="../learnresources/images/doc.png" style="width:125px;">
+            <div style="width: 130px;text-align: center"><lable>高数参考文献.doc</lable></div>
+            <div style="width: 130px;text-align: center"><a href="#"><span>下载</span></a><span>下载数：200</span></div>
+            <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+        </div>
+    </div>
+
+    </div>
+    <script type="application/javascript">
+        var removeNoticeModal;
+        require(["../learnresources/learnresources"], function(learnresources) {
+            learnresources.init();
+            removeNoticeModal = learnresources.removeNoticeModal;
+        });
+    </script>
+
+</body>
+</html>
