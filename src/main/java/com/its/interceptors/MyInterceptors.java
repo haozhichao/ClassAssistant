@@ -17,12 +17,12 @@ public class MyInterceptors implements HandlerInterceptor {
                                     HttpServletResponse httpServletResponse, Object o)
                                     throws Exception {
         System.out.println("初始拦截器");
-        Object object =  httpServletRequest.getSession().getAttribute("user");
+        //Object object =  httpServletRequest.getSession().getAttribute("user");
         /*if (object == null){
             httpServletResponse.sendRedirect("/login/login.html");
             return false;
         }*/
-        return true;
+        return true;        //返回true才会继续执行下一个拦截器的preHandle方法
     }
 
     @Override public void postHandle(HttpServletRequest httpServletRequest,

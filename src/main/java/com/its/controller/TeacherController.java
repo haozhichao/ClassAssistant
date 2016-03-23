@@ -79,9 +79,14 @@ public class TeacherController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	public Integer update(Teacher teacher){
+	public Integer update(Teacher teacher,HttpServletRequest request){
 
-		return teacherService.updateNotNull(teacher);
+		Teacher sessionStu = (Teacher)request.getSession().getAttribute("user");
+		teacher.setId(sessionStu.getId());
+		teacher.setName(sessionStu.getName());
+		teacher.setDel(sessionStu.getDel());
+		teacher.setPassword(sessionStu.getPassword());
+		return teacherService.updateAll(teacher);
 	}
 
 	/**
@@ -98,5 +103,16 @@ public class TeacherController {
 		}
 		return false;
 
+	}
+	/**
+	 * 取得session中的数据
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getTeacher")
+	@ResponseBody
+	public Teacher getStudent(HttpServletRequest request){
+		Teacher teacher = (Teacher)request.getSession().getAttribute("user");
+		return teacherService.selectByKey(teacher.getId());
 	}
 }

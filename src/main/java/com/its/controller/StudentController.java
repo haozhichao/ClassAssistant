@@ -98,6 +98,7 @@ public class StudentController {
 	@RequestMapping("/getStudent")
 	@ResponseBody
 	public Student getStudent(HttpServletRequest request){
-		return (Student)request.getSession().getAttribute("user");
+		Student student = (Student)request.getSession().getAttribute("user");
+		return studentService.selectByKey(student.getId());
 	}
 }
