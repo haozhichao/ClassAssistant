@@ -17,4 +17,15 @@
     <result column="c_telpthone" property="telpthone" jdbcType="VARCHAR" />
     <result column="c_del" property="del" jdbcType="BIT" />
   </resultMap>
+  <select id="getByPage" resultMap="BaseResultMap" parameterType="com.its.controller.vo.StudentVo">
+    SELECT s.c_id, s.c_username, s.c_name, s.c_perSign, s.c_headImg, s.c_password, s.c_school, s.c_stuid, s.c_email, s.c_telpthone
+    FROM t_student s, t_classroom_relation_student crs, t_classroom c
+    WHERE s.c_del = 0 and crs.c_del = 0 and c.c_del = 0 and crs.c_classroomId = c.c_id and crs.c_studentId = s.c_id and c.c_id = #{classRoomId,jdbcType=INTEGER}
+    limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+  <select id="getCount" resultType="Integer" parameterType="com.its.controller.vo.StudentVo">
+    SELECT count(*)
+    FROM t_student s, t_classroom_relation_student crs, t_classroom c
+    WHERE s.c_del = 0 and crs.c_del = 0 and c.c_del = 0 and crs.c_classroomId = c.c_id and crs.c_studentId = s.c_id and c.c_id = #{classRoomId,jdbcType=INTEGER}
+  </select>
 </mapper>

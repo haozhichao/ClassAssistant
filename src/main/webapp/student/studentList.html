@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script data-main="../static/main" src="../static/js/require.js"></script>
+    <style type="text/css">
+        .btn-info{
+            background-color: #39D5B0;
+            line-height: 12px;
+        }
+        .btn-info:focus {
+            background-color: #38B259;
+        }
+        .btn-info:active{
+            background-color: #38B259;
+        }
+        .btn-info:hover {
+            background-color: #38B259;
+        }
+        .btn-default{
+            line-height: 12px;
+        }
+    </style>
+</head>
+<body>
+<!-- 相关操作按钮 -->
+<div id="releaseDiv" style="height: 20px;">
+    <div class="pull-right">
+        <button class="btn btn-info" id="">导出成员Excel</button>
+    </div>
+</div>
+<!-- 学生成员列表 -->
+<div class = "container">
+    <table id = "studentList">
+        <thead>
+        </thead>
+    </table>
+</div>
+
+<script type="application/javascript">
+    require(["../student/studentList"], function(student) {
+        student.init();
+    });
+</script>

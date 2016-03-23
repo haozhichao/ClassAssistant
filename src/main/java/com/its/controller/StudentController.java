@@ -1,5 +1,7 @@
 package com.its.controller;
 
+import com.its.controller.vo.PageVo;
+import com.its.controller.vo.StudentVo;
 import com.its.db.pojo.Student;
 import com.its.service.IStudentService;
 
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -100,4 +104,28 @@ public class StudentController {
 	public Student getStudent(HttpServletRequest request){
 		return (Student)request.getSession().getAttribute("user");
 	}
+
+	/**
+	 * 分页查询学生列表
+	 * @param studentVo
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getByPage")
+	public PageVo<Student> getByPage(final StudentVo studentVo, final HttpServletRequest request) {
+
+		studentVo.setPageIndex(studentVo.getPageIndex() + 1);
+		// 查出集合
+		List<Student> students = studentService.getByPage(studentVo);
+		// 查出总记录数
+		Integer totalRecord = studentService.getCount(studentVo);
+		// 初始化页码相关参数
+		studentVo.setTotalRecord(totalRecord);
+		studentVo.initPageMsg();
+		// 封装成pageVo 对象返回
+		PageVo<Student> pageVo = new PageVo<Student>(studentVo.getTotalRecord(), studentVo.getTotalPage(), studentVo.getPageSize(), studentVo.getPageIndex(), students);
+		return pageVo;
+	}
+
 }
