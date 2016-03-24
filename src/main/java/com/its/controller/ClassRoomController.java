@@ -7,6 +7,7 @@ import com.its.db.pojo.Student;
 import com.its.db.pojo.Teacher;
 import com.its.service.IClassRelationStudentService;
 import com.its.service.IClassRoomService;
+import com.its.util.UuidUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,8 @@ public class ClassRoomController {
 	@ResponseBody
 	public int createClassRoom(ClassRoom classRoom ,HttpServletRequest request){
 
-		//生成邀请码
-		String uuid = UUID.randomUUID().toString();
+		//生成base58的邀请码
+		String uuid = UuidUtils.base58Uuid();
 		classRoom.setUuid(uuid);
 		classRoom.setCreaterdate(new Date());
 		classRoom.setStunum(0);
