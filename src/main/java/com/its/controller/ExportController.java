@@ -53,27 +53,27 @@ public class ExportController {
 
 
     private void wirteFileAndDownload(final HttpServletResponse response,Map<String, Object> t_reportData)
-            throws Exception {
+                                    throws Exception {
         Jxls t_jxls = JxlsFactory.getTransformer(S_TEMPLATE, t_reportData);
         String fileName=t_jxls.transform();
         response.setContentType("application/vnd.ms-excel");
-        //Éè¶¨ÎÄ¼şÕ¹ÏÖ·½Ê½(ÔÚÏß´ò¿ª¡¾inline¡¿/ÔÚÏßÏÂÔØ¡¾attachment¡¿)
+        //è®¾å®šæ–‡ä»¶å±•ç°æ–¹å¼(åœ¨çº¿æ‰“å¼€ã€inlineã€‘/åœ¨çº¿ä¸‹è½½ã€attachmentã€‘)
         response.setHeader(
-                "Content-Disposition",
-                "attachment;filename="
-                        + java.net.URLEncoder
-                        .encode(sdf.format(new Date()) + "_" + S_TEMPLATE, "UTF-8")
+                                        "Content-Disposition",
+                                        "attachment;filename="
+                                                                        + java.net.URLEncoder
+                                                                        .encode(sdf.format(new Date()) + "_" + S_TEMPLATE, "UTF-8")
         );
         IOUtils.copy(new FileInputStream(JxlsFactory.S_PATH_DEST + fileName),
-                response.getOutputStream());
+                                        response.getOutputStream());
 
     }
 
 
-    //±¨±íËùĞèÒªµÄÊı¾İ
+    //æŠ¥è¡¨æ‰€éœ€è¦çš„æ•°æ®
     private Map<String, Object> getStudentData(HttpServletRequest request){
 
-        int id = (int) request.getSession().getAttribute("id");
+        int id = (Integer) request.getSession().getAttribute("id");
         List<Student> students = studentService.getStudentByClassId(id);
         Map<String,Object> beans = new HashMap<String,Object>();
         beans.put("students", students);
