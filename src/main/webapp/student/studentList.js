@@ -137,7 +137,7 @@ define(['toastr', 'bootstrapValidator', 'boottable','boottable_zh_cn'], function
         //以表单的形式提交，设置请求表头，浏览器可以认为是下载
         var postForm = document.getElementById("exportForm");
         postForm.method = "post";
-        postForm.action ="/export/export?pro=student&list="+21;
+        postForm.action ="/export/export?pro=student";
         postForm.submit();
 
     }

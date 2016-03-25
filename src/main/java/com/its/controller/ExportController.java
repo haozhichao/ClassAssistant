@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
@@ -35,13 +36,13 @@ public class ExportController {
     public static final String YYYYMMDD = "yyyy-MM-dd";
 
     @RequestMapping(value = "/export", method = RequestMethod.POST)
-    public void export(final HttpServletResponse response,String pro,String list){
+    public void export(final HttpServletResponse response,String pro,HttpServletRequest request ){
         try {
             Map<String, Object> reportData=new HashMap<String, Object>();
             String flg=pro;
             if(flg.equals("student")){
                 S_TEMPLATE= "student.xls";
-                reportData=getStudentData(list);
+                reportData=getStudentData(request);
             }
             wirteFileAndDownload(response, reportData);
         } catch (Exception e) {
@@ -69,9 +70,11 @@ public class ExportController {
     }
 
 
-    private Map<String, Object> getStudentData(String classRoomId){
+    //报表所需要的数据
+    private Map<String, Object> getStudentData(HttpServletRequest request){
 
-        List<Student> students = studentService.getAll();
+        int id = (int) request.getSession().getAttribute("id");
+        List<Student> students = studentService.getStudentByClassId(id);
         Map<String,Object> beans = new HashMap<String,Object>();
         beans.put("students", students);
         return beans;

@@ -55,4 +55,19 @@ public class StudentService extends BaseService<Student> implements IStudentServ
         return 0;
     }
 
+    @Override public List<Student> getStudentByClassId(int id) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<Student> students = new ArrayList<Student>();
+        try {
+            StudentMapper mapper = session .getMapper(StudentMapper.class);
+            students = mapper.getStudentByClassId(id);
+            return students;
+        } catch (Exception e) {
+            LOGGER.error("getByPage出现异常", e);
+        } finally {
+            session.close();
+        }
+        return students;
+    }
+
 }

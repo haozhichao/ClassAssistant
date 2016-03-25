@@ -28,4 +28,9 @@
     FROM t_student s, t_classroom_relation_student crs, t_classroom c
     WHERE s.c_del = 0 and crs.c_del = 0 and c.c_del = 0 and crs.c_classroomId = c.c_id and crs.c_studentId = s.c_id and c.c_id = #{classRoomId,jdbcType=INTEGER}
   </select>
+  <select id="getStudentByClassId" parameterType="Integer" resultMap="BaseResultMap">
+     SELECT s.c_id, s.c_username, s.c_name, s.c_perSign, s.c_headImg, s.c_password, s.c_school, s.c_stuid, s.c_email, s.c_telpthone
+     FROM t_student s, t_classroom_relation_student crs, t_classroom c
+     WHERE s.c_del = 0 and crs.c_del = 0 and c.c_del = 0 and crs.c_classroomId = c.c_id and crs.c_studentId = s.c_id and c.c_id = #{id}
+  </select>
 </mapper>

@@ -11,4 +11,6 @@ public interface StudentMapper extends MyMapper<Student> {
     List<Student> getByPage(StudentVo studentVo);
 
     Integer getCount(StudentVo studentVo);
+
+    List<Student> getStudentByClassId(int id);
 }

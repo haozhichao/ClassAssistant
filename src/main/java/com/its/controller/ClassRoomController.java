@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -153,8 +155,34 @@ public class ClassRoomController {
 		if(obj!=null){
 			role = (Integer)obj;
 		}
-
 		return role;
+
+	}
+
+	/**
+	 * 把传过来的id存在session中去
+	 * @param id
+	 */
+	@RequestMapping("/addIdSession")
+	@ResponseBody
+	public void addIdSession(String id,HttpServletRequest request){
+		//设置id到session中
+		request.getSession().setAttribute("id",id);
+	}
+
+	/**
+	 * 跳转到课堂内部
+	 * @param request
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/classRoom2Room")
+	@ResponseBody
+	public ModelAndView classRoom2Room(HttpServletRequest request,int id){
+
+		request.getSession().setAttribute("id",id);
+
+		return new ModelAndView("redirect:/index.html");
 	}
 
 }

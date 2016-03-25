@@ -14,4 +14,6 @@ public interface IStudentService extends IService<Student>{
 
     Integer getCount(StudentVo studentVo);
 
+    List<Student> getStudentByClassId(int id);
+
 }

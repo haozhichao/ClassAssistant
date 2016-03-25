@@ -52,7 +52,7 @@ define(['jquery'], function ($) {
       success:function(data){
         $.each(data,function(index,item){
           html.push('<div class="panel panel-info" id="'+item.id+'" style="width: 250px;height: 200px;background-color: #FFFFFF;margin-left: 20px;margin-top: 20px;float:left">');
-          html.push('<div class="panel-heading"><a href="../index.html?id='+item.id+'">'+item.name+'</a></div>');
+          html.push('<div class="panel-heading"><a href="/classRoom/classRoom2Room?id='+item.id+'">'+item.name+'</a></div>');
           html.push('<div style="height: 30px"><lable>人数:'+item.stunum+'</lable></div>');
           html.push('<div   style="height: 30px"><lable>创建时间:'+FormatDate(item.createrdate)+'</lable></div>');
           html.push('</div>');
@@ -222,6 +222,8 @@ define(['jquery'], function ($) {
       });
     });
   }
+
+
   //初始化日期j
   function FormatDate (strTime) {
     var date = new Date(strTime);
