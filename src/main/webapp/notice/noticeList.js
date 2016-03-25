@@ -2,8 +2,10 @@
  * Created by haozhichao on 1/6/2016.
  */
 define(['toastr', 'bootstrapValidator'], function (toastr) {
-
+    var role = 0; // 当前角色，初始为学生
     function init() {
+        initCurrentRole();// 初始化当前角色
+        initPageDom();    // 初始化页面Dom元素
         initNoticeList(); // 初始化列表
         initButton();     // 初始化点击事件
     }
@@ -15,6 +17,35 @@ define(['toastr', 'bootstrapValidator'], function (toastr) {
         noticeList();
     }
 
+    /**
+     * 初始化页面Dom元素
+     */
+    function initPageDom() {
+        var html = [];
+        if(role == 1) { // 如果当前角色是老师，则显示发布公告按钮
+            html.push('<div class="pull-right">');
+            html.push('<button class="btn btn-info" id="addNotice">发布公告</button>');
+            html.push('</div>');
+            $('#releaseDiv').html(html.join(''));
+            // 发布公告按钮
+            initAddNotice();
+        }
+    }
+
+    /**
+     * 获取当前角色
+     */
+    function initCurrentRole() {
+        $.ajax({
+            type:"POST",
+            async:false,
+            url:"/classRoom/getRole",
+            dataType:"JSON",
+            success:function(data){
+                role = data;
+            }
+        });
+    }
     /**
      * 刷新公告列表
      */
@@ -32,15 +63,21 @@ define(['toastr', 'bootstrapValidator'], function (toastr) {
             url:"/notice/list",
             dataType:"JSON",
             success:function(data){
-                $.each(data,function(index,item){
-                    html.push('<div class="panel panel-default" id="notice_'+ item.id +'">');
-                    html.push('<div class="panel-heading">'+ item.title); // 标题
-                    html.push('<button type="button" class="close" aria-hidden="true" onclick="removeNoticeModal('+ item.id +')">×</button>');
-                    html.push('</div>');
-                    html.push('<div class="panel-body">'+ item.content +'</div>');    // 内容
-                    html.push('<div class="panel-footer">发布人：'+ item.teachername +'&nbsp;&nbsp;'+ new Date(item.releasedate).Format("yyyy/MM/dd/HH:mm:ss") +'</div>');  // 发布人、发布时间
-                    html.push('</div>');
-                });
+                if(data.length == 0) {
+                    html.push('暂无公告');
+                } else {
+                    $.each(data,function(index,item){
+                        html.push('<div class="panel panel-default" id="notice_'+ item.id +'">');
+                        html.push('<div class="panel-heading">'+ item.title); // 标题
+                        if(role == 1) {
+                            html.push('<button type="button" class="close" aria-hidden="true" onclick="removeNoticeModal('+ item.id +')">×</button>');
+                        }
+                        html.push('</div>');
+                        html.push('<div class="panel-body">'+ item.content +'</div>');    // 内容
+                        html.push('<div class="panel-footer">发布人：'+ item.teachername +'&nbsp;&nbsp;'+ new Date(item.releasedate).Format("yyyy-MM-dd HH:mm:ss") +'</div>');  // 发布人、发布时间
+                        html.push('</div>');
+                    });
+                }
                 $('#noticeList').html(html.join(''));
             }
         });
@@ -54,7 +91,7 @@ define(['toastr', 'bootstrapValidator'], function (toastr) {
         $.ajax({
             type:"POST",
             url:"/notice/add",
-            data:{classroomid: 1, title:title, content:content, teachername: '好老师'}, //先这样，回头再改
+            data:{title:title, content:content},
             dataType:"JSON",
             success:function(data){
                 if(data == 1) {
@@ -105,8 +142,7 @@ define(['toastr', 'bootstrapValidator'], function (toastr) {
     function initButton() {
         // 添加按钮
         initAddButton();
-        // 发布公告按钮
-        initAddNotice();
+
         // 删除按钮
         initRemoveButton();
     }

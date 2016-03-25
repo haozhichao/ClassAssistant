@@ -144,7 +144,7 @@ public class ClassRoomController {
 	/**
 	 * 返回角色权限
 	 * @param request
-	 * @return
+	 * @return 0-学生；1-老师
 	 */
 	@RequestMapping("/getRole")
 	@ResponseBody

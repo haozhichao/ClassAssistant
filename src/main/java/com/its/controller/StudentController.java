@@ -116,7 +116,8 @@ public class StudentController {
 	@ResponseBody
 	@RequestMapping("/getByPage")
 	public PageVo<Student> getByPage(final StudentVo studentVo, final HttpServletRequest request) {
-
+		int classRoomId = (Integer)request.getSession().getAttribute("id");
+		studentVo.setClassRoomId(classRoomId);
 		studentVo.setPageIndex(studentVo.getPageIndex() + 1);
 		// 查出集合
 		List<Student> students = studentService.getByPage(studentVo);

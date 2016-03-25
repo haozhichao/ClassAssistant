@@ -1,6 +1,7 @@
 package com.its.controller;
 
 import com.its.db.pojo.Notice;
+import com.its.db.pojo.Teacher;
 import com.its.service.INoticeService;
 
 import org.slf4j.Logger;
@@ -26,15 +27,14 @@ public class NoticeController {
 	/**
 	 * 查询Notice列表
 	 * @param request
-	 * @param classroomId 课堂id
 	 * @return Notice集合
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<Notice> list(HttpServletRequest request, final Integer classroomId){
-		// 暂时测试classroomid 为 1
+	public List<Notice> list(HttpServletRequest request){
+		int classRoomId = (Integer)request.getSession().getAttribute("id");
 		Notice notice = new Notice();
-		notice.setClassroomid(1);
+		notice.setClassroomid(classRoomId);
 		notice.setDel(false); // 未删除
 		List<Notice> noticeList = noticeService.select(notice);
 		LOGGER.info("查询noticeList集合成功");
@@ -48,11 +48,17 @@ public class NoticeController {
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public Integer add(Notice notice){
+	public Integer add(HttpServletRequest request, Notice notice){
 		if(notice == null) {
 			LOGGER.error("添加notice失败", "前台过来的notice为null");
 			return 0;
 		}
+		// 获取当前用户信息、课堂信息
+		int classRoomId = (Integer)request.getSession().getAttribute("id");
+		Teacher teacher = (Teacher)request.getSession().getAttribute("user");
+		String teacherName = teacher.getName();
+		notice.setClassroomid(classRoomId);
+		notice.setTeachername(teacherName);
 		notice.setReleasedate(new Date()); //发布时间
 		notice.setDel(false);
 		noticeService.save(notice);
