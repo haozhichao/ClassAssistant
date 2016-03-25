@@ -39,6 +39,7 @@ public class StudentController {
 		}
 		//设置默认的用户名相同
 		student.setName(student.getUsername());
+		student.setDel(false);
 		return studentService.save(student);
 	}
 

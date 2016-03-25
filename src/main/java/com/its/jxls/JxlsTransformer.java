@@ -1,52 +1,56 @@
 package com.its.jxls;
 
 import net.sf.jxls.transformer.XLSTransformer;
+
 import java.util.Map;
 
 /**
- * @author
+ * Transformer <br> <p> Create on : 2012-9-8<br> <p> </p> <br>
  *
+ * @author xingxiaohuan<br>
+ * @version riil.multilevel.action v1.0 <p> <br> <strong>Modify History:</strong><br> user
+ *          modify_date modify_content<br> -------------------------------------------<br> <br>
  */
 public class JxlsTransformer {
 
     /**
-     * Ä£°åÄ¿Â¼
+     * æ¨¡æ¿ç›®å½•
      */
     public static final String S_DEFOULT_PATH_SRC = "/deploy/reportdata.war/jxlsTemplate/";
     /**
-     * ±¨±íÊı³öÄ¿Â¼
+     * æŠ¥è¡¨æ•°å‡ºç›®å½•
      */
     public static final String S_DEFOULT_PATH_DEST = "/deploy/reportdata.war/jxlsOutput/";
     /**
-     * ×ª»»Æ÷
+     * è½¬æ¢å™¨
      */
     private XLSTransformer m_transformer = new XLSTransformer();
     /**
-     * Ä£°åÄ¿Â¼È«Â·¾¶
+     * æ¨¡æ¿ç›®å½•å…¨è·¯å¾„
      */
     private String m_fullPahtSrc;
     /**
-     * ±¨±íÊı³öÄ¿Â¼È«Â·¾¶
+     * æŠ¥è¡¨æ•°å‡ºç›®å½•å…¨è·¯å¾„
      */
     private String m_fullPahDest;
     /**
-     * Êı¾İ½á¹¹ 1.Map->Object 2.Map->List->(Map/GroovyRowResult/DynaBean)
+     * æ•°æ®ç»“æ„ 1.Map->Object 2.Map->List->(Map/GroovyRowResult/DynaBean)
      */
     private Map<String, Object> m_beans;
     /**
-     * Ä£°åÎÄ¼şÃû
+     * æ¨¡æ¿æ–‡ä»¶å
      */
     private String m_templateFileName;
     /**
-     * Éú³É±¨±íÎÄ¼şÃû
+     * ç”ŸæˆæŠ¥è¡¨æ–‡ä»¶å
      */
     private String m_reportFileName;
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      *
-     * @param fileName Ô´ÎÄ¼şÃû¡£Êä³öÎÄ¼şÃû×Ô¶¯¼ÆËã
-     * @param beans    Êı¾İ¶ÔÏó
+     * @param fileName æºæ–‡ä»¶åã€‚è¾“å‡ºæ–‡ä»¶åè‡ªåŠ¨è®¡ç®—
+     * @param beans    æ•°æ®å¯¹è±¡
      */
     public JxlsTransformer(final String fileName, final Map<String, Object> beans) {
         super();
@@ -56,14 +60,14 @@ public class JxlsTransformer {
     }
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      *
-     * @param fileNameSrc  Ô´ÎÄ¼şÃû
-     * @param fileNameDest Êä³öÎÄ¼şÃû
-     * @param beans        Êı¾İ¶ÔÏó
+     * @param fileNameSrc  æºæ–‡ä»¶å
+     * @param fileNameDest è¾“å‡ºæ–‡ä»¶å
+     * @param beans        æ•°æ®å¯¹è±¡
      */
     public JxlsTransformer(final String fileNameSrc, final String fileNameDest,
-                           final Map<String, Object> beans) {
+                                    final Map<String, Object> beans) {
         super();
         this.m_fullPahtSrc = S_DEFOULT_PATH_SRC + fileNameSrc + ".xls";
         this.m_fullPahDest = S_DEFOULT_PATH_DEST + fileNameDest + ".xls";
@@ -71,7 +75,7 @@ public class JxlsTransformer {
     }
 
     /**
-     * Éú³É±¨±í
+     * ç”ŸæˆæŠ¥è¡¨
      *
      * @throws Exception e
      */
@@ -80,9 +84,9 @@ public class JxlsTransformer {
     }
 
     /**
-     * »ñµÃÔ­Éú¶ÔÏó
+     * è·å¾—åŸç”Ÿå¯¹è±¡
      *
-     * @return XLSTransformer Ô­Éú¶ÔÏó
+     * @return XLSTransformer åŸç”Ÿå¯¹è±¡
      */
     public XLSTransformer getTransformer() {
         return m_transformer;

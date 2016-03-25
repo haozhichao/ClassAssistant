@@ -77,7 +77,7 @@ define(['toastr', 'bootstrapValidator', 'boottable','boottable_zh_cn'], function
         $("#studentList").bootstrapTable({
             // studentId:studentId,
             method: 'GET',
-            url: '/student/getByPage?classRoomId=' + 1,
+            url: '/student/getByPage?classRoomId=' + 21,
             cache: false,
             striped: true,
             search: false,
@@ -127,9 +127,20 @@ define(['toastr', 'bootstrapValidator', 'boottable','boottable_zh_cn'], function
      * 初始化按钮事件
      */
     function initButton(){
-
+        $('#export').click(function(){
+            exportReportMore();
+        });
     }
 
+    //导出报表
+    function exportReportMore(){
+        //以表单的形式提交，设置请求表头，浏览器可以认为是下载
+        var postForm = document.getElementById("exportForm");
+        postForm.method = "post";
+        postForm.action ="/export/export?pro=student&list="+21;
+        postForm.submit();
+
+    }
     //========================
     var student = {};
     student.init = function () {

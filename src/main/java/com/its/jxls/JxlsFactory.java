@@ -9,41 +9,42 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Jxls¶ÔÏó¹¤³§Àà£¬¿ØÖÆJxlsµÄ²úÉú
+ * Jxlså¯¹è±¡å·¥å‚ç±»ï¼Œæ§åˆ¶Jxlsçš„äº§ç”Ÿ <br> <p> Create on : 2012-9-8<br> <p> </p> <br>
  *
- * @author
- *
+ * @author xingxiaohuan<br>
+ * @version riil.multilevel.action v1.0 <p> <br> <strong>Modify History:</strong><br> user
+ *          modify_date modify_content<br> -------------------------------------------<br> <br>
  */
 public class JxlsFactory {
 
     /**
-     * ÈÕÖ¾
+     * æ—¥å¿—
      */
     private static final Logger logger = LoggerFactory
-            .getLogger(JxlsFactory.class);
+                                    .getLogger(JxlsFactory.class);
     /**
-     * ¸ùÄ¿Â¼
+     * æ ¹ç›®å½•
      */
 
     public static final String S_PATH_ROOT =  System.getProperty("user.dir")+File.separator + "src"+File.separator+"main"+File.separator+"resources" +File.separator;
 
-  //  ²¿ÊğÄ¿Â¼
-  // public static final String S_PATH_ROOT=  new File("/").getAbsolutePath()+"FGW"+File.separator+"conf"+File.separator;
+    //  éƒ¨ç½²ç›®å½•
+    // public static final String S_PATH_ROOT=  new File("/").getAbsolutePath()+"FGW"+File.separator+"conf"+File.separator;
     /**
-     * Ä£°åÄ¿Â¼
+     * æ¨¡æ¿ç›®å½•
      */
     public static  String S_PATH_SRC =S_PATH_ROOT+ "template" + File.separator;
     /**
-     * ±¨±íÄ¿Â¼
+     * æŠ¥è¡¨ç›®å½•
      */
     public static final String S_PATH_DEST = S_PATH_ROOT+"result" + File.separator;
 
     /**
-     * ±¨±íÊÓÍ¼Ä¿Â¼
+     * æŠ¥è¡¨è§†å›¾ç›®å½•
      */
     public static final String S_PATH_REPORT_VIEW = "view" + File.separator;
     /**
-     * ¼ÆÊıÆ÷
+     * è®¡æ•°å™¨
      */
     private static long m_counter = 0;
     /**
@@ -51,14 +52,14 @@ public class JxlsFactory {
      */
     private static final JxlsFactory m_foctory = new JxlsFactory();
     /**
-     * Ïß³Ì¾Ö²¿±äÁ¿
+     * çº¿ç¨‹å±€éƒ¨å˜é‡
      */
     private ThreadLocal<Jxls> m_transformerThreadLocal = new ThreadLocal<Jxls>();
 
     /**
-     * ´´½¨Jxls¶ÔÏó
+     * åˆ›å»ºJxlså¯¹è±¡
      *
-     * @return ³É¹¦·µ»ØJxls£¬Ê§°Ü·µ»Ø null
+     * @return æˆåŠŸè¿”å›Jxlsï¼Œå¤±è´¥è¿”å› null
      */
     private static Jxls createJxls() {
         if (m_foctory.m_transformerThreadLocal.get() == null) {
@@ -71,38 +72,38 @@ public class JxlsFactory {
     }
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      */
     private JxlsFactory() {
     }
 
     /**
-     * »ñµÃJxls¶ÔÏó
+     * è·å¾—Jxlså¯¹è±¡
      *
-     * @param templateFileName Ô´ÎÄ¼şÃû¡£Êä³öÎÄ¼şÃû×Ô¶¯¼ÆËã
-     * @param beans            ±¨±íËùĞèµÄÊı¾İ
-     * @return ³É¹¦·µ»ØJxls£¬Ê§°Ü·µ»Ø null
+     * @param templateFileName æºæ–‡ä»¶åã€‚è¾“å‡ºæ–‡ä»¶åè‡ªåŠ¨è®¡ç®—
+     * @param beans            æŠ¥è¡¨æ‰€éœ€çš„æ•°æ®
+     * @return æˆåŠŸè¿”å›Jxlsï¼Œå¤±è´¥è¿”å› null
      */
     public static Jxls getTransformer(final String templateFileName,
-                                      final Map<String, Object> beans) {
+                                    final Map<String, Object> beans) {
         if (templateFileName == null || templateFileName.equals("")
-            || templateFileName.length() < 8) {
-            logger.error("»ñÈ¡Jxls¶ÔÏóÊ±³ö´í:Ä£°åÎÄ¼şÃû²»ÄÜÎª¿Õ,²¢ÇÒÎÄ¼şÃû³¤¶È±ØĞë´óÓÚÈıÎ»");
+                                        || templateFileName.length() < 8) {
+            logger.error("è·å–Jxlså¯¹è±¡æ—¶å‡ºé”™:æ¨¡æ¿æ–‡ä»¶åä¸èƒ½ä¸ºç©º,å¹¶ä¸”æ–‡ä»¶åé•¿åº¦å¿…é¡»å¤§äºä¸‰ä½");
             return null;
         }
         if (!templateFileName.endsWith(".xls")) {
-            logger.error("»ñÈ¡Jxls¶ÔÏóÊ±³ö´í:Ä£°åÓ¦¸ÃÊÇxlsÎÄ¼ş");
+            logger.error("è·å–Jxlså¯¹è±¡æ—¶å‡ºé”™:æ¨¡æ¿åº”è¯¥æ˜¯xlsæ–‡ä»¶");
             return null;
         }
         String t_prefix = templateFileName.substring(0, 3);
 
         FastDateFormat t_formatter = FastDateFormat.getInstance("yyyyMMddHHmmssSSS");
         String t_reportFileName =
-                t_formatter.format(new Date()) + "_" + String.format("%03d", m_counter++ % 1000)
-                + "_" + t_prefix + ".xls";
+                                        t_formatter.format(new Date()) + "_" + String.format("%03d", m_counter++ % 1000)
+                                                                        + "_" + t_prefix + ".xls";
         Jxls t_jxls = createJxls();
         t_jxls.setTemplateFileName(templateFileName).setReportFileName(t_reportFileName)
-                .setBeans(beans);
+                                        .setBeans(beans);
         return t_jxls;
     }
 

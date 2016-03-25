@@ -43,7 +43,7 @@ public class ClassRoomController {
 		String uuid = UuidUtils.base58Uuid();
 		classRoom.setUuid(uuid);
 		classRoom.setCreaterdate(new Date());
-		classRoom.setStunum(0);
+		classRoom.setStunum(1);
 		//从session中获取老师信息
 		Teacher teacher = (Teacher)request.getSession().getAttribute("user");
 		if (teacher != null){
@@ -87,6 +87,10 @@ public class ClassRoomController {
 					return -3;
 				}else {
 					classRelationStudent.setStudentid(student.getId());
+					//班级人数添加一个
+					ClassRoom classRoom1  = list.get(0);
+					classRoom1.setStunum(classRoom1.getStunum() + 1);
+					classRoomService.updateNotNull(classRoom1);
 					return classRelationStudentService.save(classRelationStudent);
 				}
 

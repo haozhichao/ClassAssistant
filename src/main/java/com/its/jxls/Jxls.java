@@ -5,52 +5,58 @@ import net.sf.jxls.processor.CellProcessor;
 import net.sf.jxls.processor.PropertyPreprocessor;
 import net.sf.jxls.processor.RowProcessor;
 import net.sf.jxls.transformer.XLSTransformer;
+
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.util.Region;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * ±¨±íÉú³É¶ÔÏó£¬¸ù¾İexcelÄ£°åÉú³É±¨±í
+ * æŠ¥è¡¨ç”Ÿæˆå¯¹è±¡ï¼Œæ ¹æ®excelæ¨¡æ¿ç”ŸæˆæŠ¥è¡¨ <br> <p> Create on : 2012-9-8<br> <p> </p> <br>
+ *
  * @author xingxiaohuan<br>
+ * @version riil.multilevel.action v1.0 <p> <br> <strong>Modify History:</strong><br> user
+ *          modify_date modify_content<br> -------------------------------------------<br> <br>
  */
 public class Jxls extends XLSTransformer  {
 
     /**
-     * ÈÕÖ¾
+     * æ—¥å¿—
      */
     private static final Logger logger = LoggerFactory
-            .getLogger(Jxls.class);
+                                    .getLogger(Jxls.class);
     /**
-     * Ä£°åÎÄ¼şÃû
+     * æ¨¡æ¿æ–‡ä»¶å
      */
     private String m_templateFileName;
     /**
-     * Éú³É±¨±íÎÄ¼şÃû
+     * ç”ŸæˆæŠ¥è¡¨æ–‡ä»¶å
      */
     private String m_reportFileName;
     /**
-     * Êı¾İ½á¹¹ 1.Map->Object(->Object/List) 2.Map->List->Map/GroovyRowResult/DynaBean
+     * æ•°æ®ç»“æ„ 1.Map->Object(->Object/List) 2.Map->List->Map/GroovyRowResult/DynaBean
      */
     private Map<String, Object> m_beans;
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      */
     Jxls() {
         super();
     }
 
     /**
-     * Éú³É±¨±í,²¢·µ»ØÎÄ¼şÈ«Â·¾¶
+     * ç”ŸæˆæŠ¥è¡¨,å¹¶è¿”å›æ–‡ä»¶å…¨è·¯å¾„
      *
-     * @return ÎÄ¼şÈ«Â·¾¶
+     * @return æ–‡ä»¶å…¨è·¯å¾„
      */
     public String transform() {
         String t_fullPathSrc = JxlsFactory.S_PATH_SRC + m_templateFileName;
@@ -58,11 +64,11 @@ public class Jxls extends XLSTransformer  {
         try {
             transformXLS(t_fullPathSrc, m_beans, t_fullPathDest);
         } catch (Exception t_e) {
-            logger.error("±¨±íÉú³É³ö´í£ºÄ£°å" + t_fullPathSrc + "·Ç·¨¸ñÊ½", t_e);
-            logger.info("´íÎóĞÅÏ¢£º{}"+t_e);
-             return "";
+            logger.error("æŠ¥è¡¨ç”Ÿæˆå‡ºé”™ï¼šæ¨¡æ¿" + t_fullPathSrc + "éæ³•æ ¼å¼", t_e);
+            logger.info("é”™è¯¯ä¿¡æ¯ï¼š{}"+t_e);
+            return "";
         }
-        logger.info("±¨±íÉú³É³É¹¦:Ä£°åÎÄ¼ş" + t_fullPathSrc + ",±¨±íÎÄ¼ş" + t_fullPathDest);
+        logger.info("æŠ¥è¡¨ç”ŸæˆæˆåŠŸ:æ¨¡æ¿æ–‡ä»¶" + t_fullPathSrc + ",æŠ¥è¡¨æ–‡ä»¶" + t_fullPathDest);
         return m_reportFileName;
     }
 
@@ -72,11 +78,11 @@ public class Jxls extends XLSTransformer  {
         try {
             transformXLSBySheet(t_fullPathSrc, t_fullPathDest, cities, objects, map);
         } catch (Exception t_e) {
-            logger.error("±¨±íÉú³É³ö´í£ºÄ£°å" + t_fullPathSrc + "·Ç·¨¸ñÊ½", t_e);
-            logger.info("´íÎóĞÅÏ¢£º{}"+t_e);
+            logger.error("æŠ¥è¡¨ç”Ÿæˆå‡ºé”™ï¼šæ¨¡æ¿" + t_fullPathSrc + "éæ³•æ ¼å¼", t_e);
+            logger.info("é”™è¯¯ä¿¡æ¯ï¼š{}"+t_e);
             return "";
         }
-        logger.info("±¨±íÉú³É³É¹¦:Ä£°åÎÄ¼ş" + t_fullPathSrc + ",±¨±íÎÄ¼ş" + t_fullPathDest);
+        logger.info("æŠ¥è¡¨ç”ŸæˆæˆåŠŸ:æ¨¡æ¿æ–‡ä»¶" + t_fullPathSrc + ",æŠ¥è¡¨æ–‡ä»¶" + t_fullPathDest);
         return m_reportFileName;
     }
 
@@ -101,11 +107,11 @@ public class Jxls extends XLSTransformer  {
             os.flush();
             os.close();
         } catch (Exception t_e) {
-            logger.error("±¨±íÉú³É³ö´í£ºÄ£°å" + t_fullPathSrc + "·Ç·¨¸ñÊ½", t_e);
-            logger.info("´íÎóĞÅÏ¢£º{}"+t_e);
+            logger.error("æŠ¥è¡¨ç”Ÿæˆå‡ºé”™ï¼šæ¨¡æ¿" + t_fullPathSrc + "éæ³•æ ¼å¼", t_e);
+            logger.info("é”™è¯¯ä¿¡æ¯ï¼š{}"+t_e);
             return "";
         }
-        logger.info("±¨±íÉú³É³É¹¦:Ä£°åÎÄ¼ş" + t_fullPathSrc + ",±¨±íÎÄ¼ş" + t_fullPathDest);
+        logger.info("æŠ¥è¡¨ç”ŸæˆæˆåŠŸ:æ¨¡æ¿æ–‡ä»¶" + t_fullPathSrc + ",æŠ¥è¡¨æ–‡ä»¶" + t_fullPathDest);
         return m_reportFileName;
     }
 
@@ -132,7 +138,7 @@ public class Jxls extends XLSTransformer  {
 
     /**
      *
-     * ÖØĞÂÉèÖÃµ¥Ôª¸ñ¼ÆËã¹«Ê½
+     * é‡æ–°è®¾ç½®å•å…ƒæ ¼è®¡ç®—å…¬å¼
      *
      *
      * @param wb*/
@@ -140,17 +146,17 @@ public class Jxls extends XLSTransformer  {
         FormulaEvaluator e= wb.getCreationHelper().createFormulaEvaluator();
         int sheetNum = wb.getNumberOfSheets();
         for (int i = 0; i < sheetNum; i++) {
-           // HSSFSheet sheet = wb.getSheetAt(i);
+            // HSSFSheet sheet = wb.getSheetAt(i);
             Sheet sheet = wb.getSheetAt(i);
             int rows = sheet.getLastRowNum() + 1;
             for (int j = 0; j < rows; j++) {
-               // HSSFRow row = sheet.getRow(j);
+                // HSSFRow row = sheet.getRow(j);
                 Row row = sheet.getRow(j);
                 if (row == null)
                     continue;
                 int cols = row.getLastCellNum();
                 for (int k = 0; k < cols; k++) {
-                   // HSSFCell cell = row.getCell(k);
+                    // HSSFCell cell = row.getCell(k);
                     Cell cell = row.getCell(new Integer(k));
                     if (cell == null)
                         continue;
@@ -176,10 +182,10 @@ public class Jxls extends XLSTransformer  {
 
 
     /**
-     * Éú³É±¨±í:¸ù¾İÑùÊ½´¦ÀíÆ÷
+     * ç”ŸæˆæŠ¥è¡¨:æ ¹æ®æ ·å¼å¤„ç†å™¨
      *
-     * @param processors ÑùÊ½´¦ÀíÆ÷
-     * @return ÎÄ¼şÈ«Â·¾¶
+     * @param processors æ ·å¼å¤„ç†å™¨
+     * @return æ–‡ä»¶å…¨è·¯å¾„
      */
     public String transform(final Object[] processors) {
         if (processors != null) {
@@ -197,14 +203,14 @@ public class Jxls extends XLSTransformer  {
     }
 
     /**
-     * @return Ä£°åÃû³Æ
+     * @return æ¨¡æ¿åç§°
      */
     public String getTemplateFileName() {
         return m_templateFileName;
     }
 
     /**
-     * @param templateFileName Ä£°åÃû³Æ
+     * @param templateFileName æ¨¡æ¿åç§°
      * @return Jxls
      */
     Jxls setTemplateFileName(final String templateFileName) {
@@ -213,14 +219,14 @@ public class Jxls extends XLSTransformer  {
     }
 
     /**
-     * @return ÎÄ¼şÃû³Æ
+     * @return æ–‡ä»¶åç§°
      */
     public String getReportFileName() {
         return m_reportFileName;
     }
 
     /**
-     * @param reportFileName ±¨¸æÃû³Æ
+     * @param reportFileName æŠ¥å‘Šåç§°
      * @return Jxls
      */
     Jxls setReportFileName(final String reportFileName) {
@@ -229,14 +235,14 @@ public class Jxls extends XLSTransformer  {
     }
 
     /**
-     * @return Êı¾İ¼¯
+     * @return æ•°æ®é›†
      */
     public Map<String, Object> getBeans() {
         return m_beans;
     }
 
     /**
-     * @param beans Êı¾İ¼¯
+     * @param beans æ•°æ®é›†
      * @return jxls
      */
     Jxls setBeans(final Map<String, Object> beans) {
