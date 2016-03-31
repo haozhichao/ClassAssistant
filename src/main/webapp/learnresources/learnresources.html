@@ -32,33 +32,42 @@
     </div>
     <!--课堂展示列表-->
     <div id="classroomList" style="float:left;">
-        <div style="width: 130px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
-            <img src="../learnresources/images/doc.png" style="width:125px;">
-            <div style="width: 130px;text-align: center"><lable>高数参考文献.doc</lable></div>
-            <div style="width: 130px;text-align: center"><a href="#"><span>下载</span></a><span>下载数：200</span></div>
+        <div onmouseover="over()" onmouseout = "out()" style="width: 80px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
+            <img src="../learnresources/images/doc.png" style="width:80px;">
+            <div class="shouName">
+            <div style="width: 80px;text-align: center"><lable>高数参考文献.doc</lable></div>
             <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+            </div>
+            <div class="showLink" style="width: 130px;display:none"><a href="#"><span>下载</span></a>&nbsp;<a href="#"><span>点赞</span></a></div>
         </div>
-        <div style="width: 130px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
-            <img src="../learnresources/images/doc.png" style="width:125px;">
-            <div style="width: 130px;text-align: center"><lable>高数参考文献.doc</lable></div>
-            <div style="width: 130px;text-align: center"><a href="#"><span>下载</span></a><span>下载数：200</span></div>
-            <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+        <div onmouseover="over()" onmouseout = "out()" style="width: 80px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
+            <img src="../learnresources/images/doc.png" style="width:80px;">
+            <div class="shouName">
+                <div style="width: 80px;text-align: center"><lable>高数参考文献.doc</lable></div>
+                <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+            </div>
+            <div class="showLink" style="width: 130px;display:none"><a href="#"><span>下载</span></a>&nbsp;<a href="#"><span>点赞</span></a></div>
         </div>
-        <div style="width: 130px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
-            <img src="../learnresources/images/doc.png" style="width:125px;">
-            <div style="width: 130px;text-align: center"><lable>高数参考文献.doc</lable></div>
-            <div style="width: 130px;text-align: center"><a href="#"><span>下载</span></a><span>下载数：200</span></div>
-            <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+        <div onmouseover="over()" onmouseout = "out()" style="width: 80px;height: 150px;background-color: #EFF3F8;margin-left: 20px;margin-top: 20px;float:left">
+            <img src="../learnresources/images/doc.png" style="width:80px;">
+            <div class="shouName">
+                <div style="width: 80px;text-align: center"><lable>高数参考文献.doc</lable></div>
+                <div style="height: 30px;text-align: center"><lable>2016-03-22</lable></div>
+            </div>
+            <div class="showLink" style="width: 130px;display:none"><a href="#"><span>下载</span></a>&nbsp;<a href="#"><span>点赞</span></a></div>
         </div>
     </div>
 
     </div>
     <script type="application/javascript">
-        var removeNoticeModal;
+        var removeNoticeModal,over,out;
         require(["../learnresources/learnresources"], function(learnresources) {
             learnresources.init();
             removeNoticeModal = learnresources.removeNoticeModal;
+            over = learnresources.over;
+            out = learnresources.out;
         });
+
     </script>
 
 </body>
