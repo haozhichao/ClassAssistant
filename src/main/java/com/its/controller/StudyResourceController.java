@@ -77,7 +77,7 @@ public class StudyResourceController {
 			out.close();
 		}
 		LOGGER.info(JSONArray.toJSONString(errors));
-		out.print(1);
+		out.print(2);
 		out.flush();
 		out.close();
 	}

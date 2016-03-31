@@ -28,7 +28,9 @@ require.config({
         ajaxfileupload2: './js/ajaxfileupload/ajaxfileupload',
         wangEditor: './js/wangEditor/js/wangEditor-1.3.12',
         bootstrapValidator: './js/bootstrapValidator/js/bootstrapValidator',
-        pager:'./js/jquery.twbsPagination'
+        pager:'./js/jquery.twbsPagination',
+        fileinput:'./js/file-input/js/fileinput.min',
+        fileinput_locale_zh:'./js/file-input/js/fileinput_locale_zh'
     },
     shim: {
         jquery: ['css!../static/css/awesome/css/font-awesome.min.css'],
@@ -44,6 +46,8 @@ require.config({
         daterangepicker: ['css!./js/datepicker/daterangepicker.css', 'jquery'],
         datetimepicker:['css!./js/datetimepicker/bootstrap-datetimepicker.css', 'jquery', 'bootstrap'],
         toastr: ['css!./js/toastr/toastr.css','jquery'],
+        fileinput: ['css!./js/file-input/css/fileinput.min.css','jquery','bootstrap'],
+        fileinput_locale_zh:['jquery'],
         layout: ['css!theme/global/plugins/font-awesome/css/font-awesome.min.css',
                  'css!theme/global/plugins/simple-line-icons/simple-line-icons.min.css',
                  'css!js/bootstrap/css/bootstrap.min.css',
