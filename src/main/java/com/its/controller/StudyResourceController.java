@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -131,5 +132,22 @@ public class StudyResourceController {
 		studyResource.setDel(false);
 		studyResourceService.save(studyResource); // 存储数据库
 		LOGGER.info("文件fileName[" + fileName + "]相关信息保存数据库成功.");
+	}
+	/**
+	 * 通过classroomid得到该课堂中所有的资源
+	 * @param request
+	 * @return 学习资源的集合
+	 */
+	@RequestMapping("/getAll")
+	@ResponseBody
+	public List<StudyResource> getAllByClassId(HttpServletRequest request ){
+
+		//课堂id,直接从session得到
+		int id = (Integer) request.getSession().getAttribute("id");
+		StudyResource studyResource = new StudyResource() ;
+		studyResource.setClassroomid(id);
+		//通过id得到集合
+		return studyResourceService.select(studyResource);
+
 	}
 }
