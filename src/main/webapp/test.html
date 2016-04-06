@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<div>
+    <div onmouseover="over()" onmouseout = "out()">
+        <p >指向这里可以显示图片</p>
+        <div id="on">
+            <span>nihao</span>
+        </div>
+        <img src="http://img.iknow.bdimg.com/avatar/66/r6s1g8.gif" style="display:none" id=""/>
+        <div style="display:none" id="img">
+            <a href="#">下载</a><span>点赞</span>
+        </div>
+    </div>
+
+</div>
+</body>
+<script>
+    function over(){
+        img = document.getElementById("img");
+        on = document.getElementById("on");
+        on.style.display = "none";
+        img.style.display = "block";
+    }
+
+    function out(){
+        img = document.getElementById("img");
+        on = document.getElementById("on");
+        on.style.display = "block";
+        img.style.display = "none";
+    }
+</script>
+</html>
