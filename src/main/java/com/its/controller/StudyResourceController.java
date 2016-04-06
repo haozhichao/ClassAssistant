@@ -21,7 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -46,7 +49,7 @@ public class StudyResourceController {
 	 * @return 0-失败; 1-成功
 	 */
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public void uploadFile(final HttpServletRequest req, final HttpServletResponse resp) {
+	public void uploadFile(MultipartFile iconImg,final HttpServletRequest req, final HttpServletResponse resp) {
 		PrintWriter out = null;
 		List<String> errors = new ArrayList<String>();
 		List<String> success = new ArrayList<String>();
@@ -54,6 +57,7 @@ public class StudyResourceController {
 			req.setCharacterEncoding(CharEncoding.UTF_8);
 			resp.setCharacterEncoding(CharEncoding.UTF_8);
 			out = resp.getWriter();
+			//MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
 			// 接收上传的附件，保存到服务器目录
 			List<FileItem> items = getFileItems(req);
 			Iterator<FileItem> itr = items.iterator();

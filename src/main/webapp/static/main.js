@@ -1,5 +1,5 @@
 /**
- * Created by Jinlei on 10/16/2015.
+ * Created by  on 10/16/2015.
  */
 require.config({
     paths: {
