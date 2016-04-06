@@ -1,10 +1,12 @@
 define(['toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
 
     function init() {
+
         initFileZh();
         initFileInput();
         initNoticeList(); // 初始化列表
         initButton();     // 初始化点击事件
+
     }
     // fileinput 插件汉化
     function initFileZh() {
@@ -87,6 +89,19 @@ define(['toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
 
 
 
+    function over(){
+        showLink = $(".showLink");
+        shouName = $(".shouName");
+        shouName.css("display","none") ;
+        showLink.css("display","block") ;
+    }
+
+    function out(){
+        showLink = $(".showLink");
+        shouName = $(".shouName");
+        shouName.css("display","block") ;
+        showLink.css("display","none") ;
+    }
 
     //========================
     var learnresources = {};
@@ -95,6 +110,12 @@ define(['toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
     };
     learnresources.removeNoticeModal = function(noticeId) {
         removeNoticeModal(noticeId);
+    };
+    learnresources.out = function(){
+        out();
+    };
+    learnresources.over = function(){
+        over();
     };
     return learnresources;
 });
