@@ -171,7 +171,7 @@ public class ClassRoomController {
 	}
 
 	/**
-	 * 跳转到课堂内部
+	 * 跳转到课堂内部,保存课堂id到session中去
 	 * @param request
 	 * @param id
 	 * @return
@@ -183,6 +183,23 @@ public class ClassRoomController {
 		request.getSession().setAttribute("id",id);
 
 		return new ModelAndView("redirect:/index.html");
+	}
+
+	/**
+	 * 获取当前课堂的邀请码
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getYQM")
+	@ResponseBody
+	public String getYQM(HttpServletRequest request ){
+
+		//获取存在session中的课堂id
+		int id = (int) request.getSession().getAttribute("id");
+		ClassRoom classRoom = classRoomService.selectByKey(id);
+
+		return classRoom.getUuid();
+
 	}
 
 }
