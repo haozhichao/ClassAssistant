@@ -1,11 +1,11 @@
-define(['toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
+define(['jquery', 'toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
 
     function init() {
 
         initFileZh();
         initFileInput();
-        initNoticeList(); // 初始化列表
-        initButton();     // 初始化点击事件
+        // initNoticeList(); // 初始化列表
+        // initButton();     // 初始化点击事件
 
     }
     // fileinput 插件汉化
@@ -69,9 +69,9 @@ define(['toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
         var control = $('#file-upload');
         control.fileinput({
             language: 'zh', // 设置语言
-            uploadUrl: '/studyResource/uploadFile',  // 上传的地址
+            uploadUrl: '/studyResource/uploadFile',       // 上传的地址
+            maxFileCount: '50', // 最大上传个数
             allowedFileExtensions : ['jpg', 'png','gif'], // 接收的文件后缀
-            maxFileCount: 100, // 最大上传个数
             enctype: 'multipart/form-data',
             showUpload: true, // 是否显示上传按钮
             showCaption: true,// 是否显示标题
@@ -81,13 +81,10 @@ define(['toastr', 'bootstrapValidator', 'fileinput'], function (toastr) {
         });
     }
 
-    /**
-     * $("#file-1").on("filebatchuploadsuccess", function(event, data, previewId, index) {
-  //上传成功的一系列操作 ，  比如一些 刷新图片列表
-});
-     */
-
-
+     $("#file-upload").on("filebatchuploadsuccess", function(event, data, previewId, index) {
+         console.info("event: " + event + ", data: " + data + ", previewId: " + previewId + ", index: " + index)
+        //上传成功的一系列操作 ，  比如一些 刷新图片列表
+     });
 
     function over(){
         showLink = $(".showLink");

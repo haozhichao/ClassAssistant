@@ -4,6 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script data-main="../static/main" src="../static/js/require.js"></script>
+
     <style type="text/css">
         .btn-info{
             background-color: #39D5B0;
@@ -27,7 +28,7 @@
     <!-- 上传div -->
     <div id = "uploadDiv">
         <div class="row" style="height: 500px">
-            <input id="file-upload" type="file">
+            <input id="file-upload" type="file" multiple>
         </div>
     </div>
     <!--课堂展示列表-->
@@ -58,7 +59,6 @@
         </div>
     </div>
 
-    </div>
     <script type="application/javascript">
         var removeNoticeModal,over,out;
         require(["../learnresources/learnresources"], function(learnresources) {

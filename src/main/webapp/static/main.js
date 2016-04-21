@@ -1,5 +1,5 @@
 /**
- * Created by Jinlei on 10/16/2015.
+ * Created by  on 10/16/2015.
  */
 require.config({
     paths: {
@@ -47,7 +47,7 @@ require.config({
         datetimepicker:['css!./js/datetimepicker/bootstrap-datetimepicker.css', 'jquery', 'bootstrap'],
         toastr: ['css!./js/toastr/toastr.css','jquery'],
         fileinput: ['css!./js/file-input/css/fileinput.min.css','jquery','bootstrap'],
-        fileinput_locale_zh:['jquery'],
+        fileinput_locale_zh:['jquery','bootstrap'],
         layout: ['css!theme/global/plugins/font-awesome/css/font-awesome.min.css',
                  'css!theme/global/plugins/simple-line-icons/simple-line-icons.min.css',
                  'css!js/bootstrap/css/bootstrap.min.css',

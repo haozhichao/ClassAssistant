@@ -9,6 +9,6 @@ import java.io.File;
 public class EnvVariable {
     public static final String uploadPath;
     static {
-        uploadPath = "D:" + File.separator + "studyResource" + File.separator;
+        uploadPath = "G:" + File.separator + "studyResourceUploadFile" + File.separator;
     }
 }
