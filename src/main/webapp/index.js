@@ -41,10 +41,30 @@ define(['layout'], function () {
         });
     }
 
+    function YQM(){
+        $.ajax({
+            type:'POST',
+            url:"/classRoom/getYQM",
+            async:false,
+            //dataType:"text json", 出现parsererrorjson转换异常
+            success:function(data){
+                $('#YQM').text(data);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    }
+
     var index = {};
     index.init = function () {
+
         Layout.init();
         _initNav();
+        YQM();
+
     };
     return index;
 });

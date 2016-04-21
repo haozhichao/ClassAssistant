@@ -33,14 +33,16 @@
 </div>
 <!-- 学生成员列表 -->
 <div class = "container" style="margin-top: 20px">
-    <table id = "studentList">
+    <table id = "studentList" >
         <thead>
         </thead>
     </table>
 </div>
 
 <script type="application/javascript">
+    var rowStyle;
     require(["../student/studentList"], function(student) {
         student.init();
+        rowStyle = student.rowStyle;
     });
 </script>

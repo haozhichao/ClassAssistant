@@ -90,9 +90,13 @@ define(['toastr', 'bootstrapValidator', 'boottable','boottable_zh_cn'], function
             sidePagination: 'server',
             columns: studentColumns,
             queryParams: getAddPageParam,
-            responseHandler: responseHandler
+            responseHandler: responseHandler,
+
+
         });
     }
+
+
     /**
      * 分页查询参数处理
      * @param params
@@ -146,5 +150,8 @@ define(['toastr', 'bootstrapValidator', 'boottable','boottable_zh_cn'], function
     student.init = function () {
         init();
     };
+    student.rowStyle = function(){
+        rowStyle();
+    }
     return student;
 });
